@@ -15,7 +15,7 @@ class Group extends Component {
         <Divider/>
         <h4>{group.name}</h4>
         <p>{group.description}</p>
-        <ShowEventsHelper dataUrl={this.props.dataUrl} event_count={group.event_count}/>
+        <ShowEventsHelper dataUrl={"groups/"+group.id+"/events"} event_count={group.event_count}/>
         <Groups dataUrl={this.props.dataUrl}/>
       </div>
     );

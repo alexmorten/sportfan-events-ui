@@ -18,13 +18,13 @@
   width: 100%;
   text-align: left;
   font-size: 14px;
-  color: #8888fb;
+
 
 }
-.event-references span{
+.event-references .link{
   cursor:pointer;
-
+  color: #8888fb !important;
 }
-.event-references span:hover{
+.event-references .link:hover{
   text-decoration: underline;
 }

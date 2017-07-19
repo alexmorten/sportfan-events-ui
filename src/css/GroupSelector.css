@@ -1,0 +1,22 @@
+.group-selector-root{
+  width: 100%;
+  max-width: 600px;
+  max-height: 800px;
+  overflow: scroll;
+}
+.group-selector-group{
+padding: 10px;
+transition: all 500ms;
+cursor:pointer;
+}
+.group-selector-group:hover{
+  background-color: #afc0f5;
+  color: white;
+}
+.group-selector-group.selected{
+  background-color: #9db4fa;
+  color: white;
+}
+.group-selector-group-childs{
+  margin-left: 10px;
+}

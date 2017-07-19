@@ -31,7 +31,7 @@ render(){
         <h4>{user.name}</h4>
         <p>{user.description}</p>
         <p>Website: <a href={"https://"+user.website}>{user.website}</a></p>
-        <ShowEventsHelper dataUrl={"users/"+user.id} event_count={user.event_count}/>
+        <ShowEventsHelper dataUrl={"users/"+user.id+"/events"} event_count={user.event_count}/>
         <Groups dataUrl={"users/"+user.id+"/groups"}/>
       </Paper>
     )

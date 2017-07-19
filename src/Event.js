@@ -4,6 +4,7 @@ import Paper from 'material-ui/Paper';
 import DateDifference from './helperComponents/DateDifference';
 import DistHelper from './helperComponents/DistHelper';
 import UserHelper from './helperComponents/UserHelper';
+import GroupHelper from './helperComponents/GroupHelper';
 
 class Event extends Component {
   render(){
@@ -22,7 +23,8 @@ class Event extends Component {
           <DistHelper dist={event.dist} className="event-dist"/>
         </div>
         <div className="event-references">
-          <UserHelper user={event.user}/>
+          <GroupHelper group={event.group}/>
+          <UserHelper user={event.user} />
         </div>
         <h4 className="event-title">{event.title}</h4>
         <p>{event.description}</p>

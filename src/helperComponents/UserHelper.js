@@ -6,7 +6,7 @@ render(){
   var user = this.props.user;
   if(user){
     return(
-      <span><Link to={"/vereine/"+user.id}>{user.name}</Link></span>
+      <span ><Link to={"/vereine/"+user.id} className="link">{user.name}</Link></span>
     );
   }
   return (

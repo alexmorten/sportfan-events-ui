@@ -13,7 +13,7 @@ class ShowEventsHelper extends Component{
   }
   getEvents = ()=>{
     var url = this.props.dataUrl;
-    Store.receive(url+"/events",(events)=>{
+    Store.receive(url,(events)=>{
       this.setState({events:events,loaded:true});
     },(failResponse)=>{
       console.log(failResponse);

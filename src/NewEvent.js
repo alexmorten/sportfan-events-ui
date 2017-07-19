@@ -1,9 +1,11 @@
 import React from 'react';
 import AuthComponent from './helperComponents/AuthComponent';
+import AuthStore from './services/AuthStore';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import DatePicker from 'material-ui/DatePicker';
 import TimePicker from 'material-ui/TimePicker';
+import GroupSelector from './helperComponents/GroupSelector';
 import './css/NewEvent.css';
 class NewEvent extends AuthComponent{
   state={
@@ -11,27 +13,31 @@ class NewEvent extends AuthComponent{
     description:"",
     date:null,
     lat:null,
-    lng:null
+    lng:null,
+    selectedGroup:null
   }
   onChange = (e)=>{
 
     e.preventDefault();
     var obj={};
     obj[e.target.name] = e.target.value;
-    console.log(e.target.value);
     this.setState(obj);
   }
   onDateChange=(_, date)=>{
     console.log(date);
     this.setState({date:date});
   }
-  ontimeChange=(_,time)=>{
+  onTimeChange=(_,time)=>{
     var date = this.state.date;
     console.log(date);
     console.log(time);
     date.setHours(time.getHours());
     date.setMinutes(time.getMinutes());
     this.setState({date:date});
+  }
+  onGroupChange= (group)=>{
+    console.log(group);
+    this.setState({selectedGroup:group});
   }
   timePickerDisabled = ()=>{
     return !this.state.date;
@@ -42,14 +48,16 @@ class NewEvent extends AuthComponent{
       description=this.state.description,
       date=this.state.date,
       lat=this.state.lat,
-      lng = this.state.lng;
-      if(title && description && date && lat && lng){
+      lng = this.state.lng,
+      group = this.state.selectedGroup;
+      if(title && description && date && lat && lng && group){
         var newPost={
           title:title,
           description:description,
           date:date,
           lat:lat,
-          lng:lng
+          lng:lng,
+          group_id:group.id
         };
         this.post("events",newPost,()=>{
           this.props.history.push("/");
@@ -59,7 +67,8 @@ class NewEvent extends AuthComponent{
       }
   }
   render(){
-    console.log(this.state.date);
+    var userDetails = AuthStore.getCurrentUserDetails();
+
     return(
       <div>
         <h4>Neues Event erstellen</h4>
@@ -68,9 +77,10 @@ class NewEvent extends AuthComponent{
         <TextField name="description" floatingLabelText="Beschreibung"
           multiLine={true} type="text" value={this.state.description} onChange={this.onChange} fullWidth={true}/>
           <DatePicker hintText="Datum" onChange={this.onDateChange} name="date" value={this.state.date}/>
-          <TimePicker hintText="Uhrzeit" disabled={this.timePickerDisabled()} onChange={this.ontimeChange} format="24hr" />
+          <TimePicker hintText="Uhrzeit" disabled={this.timePickerDisabled()} onChange={this.onTimeChange} format="24hr" />
         <TextField name="lat" floatingLabelText="Latitude" type="number" value={this.state.lat} onChange={this.onChange} fullWidth={true}/>
         <TextField name="lng" floatingLabelText="Longitude" type="number" value={this.state.lng} onChange={this.onChange} fullWidth={true}/>
+        <GroupSelector dataUrl={"users/"+userDetails.id+"/groups"} onSelect={this.onGroupChange} selected={this.state.selectedGroup}/>
         <FlatButton label="Post" onClick={this.onSubmit} type="submit"/>
         </form>
       </div>
