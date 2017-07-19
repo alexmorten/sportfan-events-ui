@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import Store from './services/Store';
+import AuthStore from './services/AuthStore';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 import './css/Registrate.css';
+import PositionGetter from './helperComponents/PositionGetter';
 
 class Registrate extends Component{
   state={
@@ -11,8 +12,11 @@ class Registrate extends Component{
     sent:false,
     failed:false,
     errors:{},
-    firstname:"",
-    lastname:"",
+    name:"",
+    description:"",
+    website:"",
+    lat:null,
+    lng:null,
     email:"",
     password:"",
     password_confirmation:"",
@@ -20,13 +24,16 @@ class Registrate extends Component{
   registrate = ()=>{
     this.setState({loading:true});
     var details = {
-      firstname:this.state.firstname,
-      lastname:this.state.lastname,
+      name:this.state.name,
+      description:this.state.description,
+      website:this.state.website,
+      lat:this.state.lat,
+      lng:this.state.lng,
       email:this.state.email,
       password:this.state.password,
       password_confirmation:this.state.password_confirmation
     };
-    Store.registrate(details,(successBody)=>{
+    AuthStore.registrate(details,(successBody)=>{
       this.setState({loading:false,sent:true});
 
     },(failResponse)=>{
@@ -46,9 +53,11 @@ class Registrate extends Component{
     obj[e.target.name] = e.target.value;
     this.setState(obj);
   }
+  onPositionChange = (pos)=>{
+    this.setState(pos);
+  }
   buttonShouldBeDisabled=()=>{
-    return !(this.state.firstname
-       && this.state.lastname
+    return !(this.state.name
        && this.state.email
        && this.state.password
        && this.state.password_confirmation);
@@ -97,25 +106,31 @@ class Registrate extends Component{
         passwordConfirmationErrors=this.state.errors.password_confirmation.map(factoryFunc);
 
     }
+    var necessary= (<span className="necessary">*</span>)
     return(
       <form className="register-form" style={style.container} >
         <h4>Create an account</h4>
-        <TextField  floatingLabelText="firstname" name="firstname" type="firstname" value={this.state.firstname} onChange={this.handleChange} />
+      {necessary}  <TextField  floatingLabelText="Name" name="name" type="text" value={this.state.name} onChange={this.handleChange} />
         <br/>
-        <TextField  floatingLabelText="lastname" name="lastname" type="lastname" onChange={this.handleChange}/>
+        <TextField  floatingLabelText="Beschreibung" name="description" type="text" value={this.state.description} onChange={this.handleChange}/>
         <br/>
-        <TextField  floatingLabelText="email" name="email" type="email" onChange={this.handleChange}/>
+        <TextField  floatingLabelText="Website" name="website" type="url" value={this.state.website} onChange={this.handleChange}/>
         <br/>
+        <PositionGetter onChange={this.onPositionChange}/>
+        <br/>
+      {necessary}  <TextField  floatingLabelText="email" name="email" type="email" value={this.state.email} onChange={this.handleChange}/>
+
         {emailErrors}
-        <TextField  floatingLabelText="password" name="password" type="password" onChange={this.handleChange}/>
+      {necessary}  <TextField  floatingLabelText="password" name="password" type="password" value={this.state.password} onChange={this.handleChange}/>
         <br/>
         {passwordErrors}
-        <TextField  floatingLabelText="password confirm" name="password_confirmation" type="password" onChange={this.handleChange}/>
+      {necessary}  <TextField  floatingLabelText="password confirm" name="password_confirmation" type="password" value={this.state.password_confirmation} onChange={this.handleChange}/>
         <br/>
         {passwordConfirmationErrors}
         <br/>
         <FlatButton onClick={this.registrate} disabled={this.buttonShouldBeDisabled()}>Create</FlatButton>
         {loadingIndicator}
+        <p className="necessary-explanation">{necessary} muss ausgefüllt sein </p>
       </form>
     );
   }

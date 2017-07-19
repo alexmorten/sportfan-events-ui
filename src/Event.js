@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './css/Event.css';
-import {Link} from 'react-router-dom';
-import Store from './services/Store';
-import AuthComponent from './helperComponents/AuthComponent';
 import Paper from 'material-ui/Paper';
+import DateDifference from './helperComponents/DateDifference';
+import DistHelper from './helperComponents/DistHelper';
+import UserHelper from './helperComponents/UserHelper';
+
 class Event extends Component {
   render(){
     var event = this.props.event;
@@ -17,9 +18,13 @@ class Event extends Component {
     return(
       <Paper style={paperStyle}>
         <div className="event-info-bar">
-
+          <DateDifference date={event.date} className="event-time"/>
+          <DistHelper dist={event.dist} className="event-dist"/>
         </div>
-        <h4>{event.title}</h4>
+        <div className="event-references">
+          <UserHelper user={event.user}/>
+        </div>
+        <h4 className="event-title">{event.title}</h4>
         <p>{event.description}</p>
       </Paper>
     );

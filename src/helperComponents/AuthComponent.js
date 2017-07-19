@@ -1,5 +1,6 @@
 import {Component} from 'react';
 import Store from '../services/Store';
+import AuthStore from '../services/AuthStore';
 class AuthComponent extends Component{
   transitionToLogin(){
 
@@ -18,18 +19,18 @@ class AuthComponent extends Component{
     }
   }
   post(url,obj,cb,fail){
-    if(Store.send(url,obj,cb,fail)==="login"){
+    if(AuthStore.send(url,obj,cb,fail)==="login"){
       this.transitionToLogin();
     }
   }
   update(url,obj,cb,fail){
-    if(Store.update(url,obj,cb,fail)==="login"){
+    if(AuthStore.update(url,obj,cb,fail)==="login"){
       this.transitionToLogin();
     }
   }
-  
+
   delete(url,cb,fail){
-    if(Store.destroy(url,cb,fail)==="login"){
+    if(AuthStore.destroy(url,cb,fail)==="login"){
       this.transitionToLogin();
     }
   }

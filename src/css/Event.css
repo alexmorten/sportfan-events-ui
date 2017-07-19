@@ -1,0 +1,30 @@
+.event-info-bar span{
+  color: lightgrey;
+  margin: 5px;
+  font-size: 12px;
+}
+
+.event-time{
+  float: left;
+}
+.event-dist{
+  float: right;
+}
+.event-title{
+  margin-top: 40px;
+}
+.event-references{
+  float: left;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  color: #8888fb;
+
+}
+.event-references span{
+  cursor:pointer;
+
+}
+.event-references span:hover{
+  text-decoration: underline;
+}

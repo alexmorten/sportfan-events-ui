@@ -1,0 +1,13 @@
+.detailed-user-container{
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 10px;
+}
+
+
+.detailed-user-loading-container{
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin: 50px auto;
+}

@@ -1,0 +1,20 @@
+.sub-groups-container{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.sub-group-item{
+  display: inline-block;
+  padding: 10px;
+  margin: 10px;
+}
+.sub-group-item *{
+  margin: 0;
+}
+.sub-group-item.selected{
+  background-color: #84c6fb !important;
+  color: white !important;
+}
+/*.sub-group-item * {
+  display: inline-block;
+}*/

@@ -1,0 +1,13 @@
+.user-container {
+  padding: 10px;
+  margin: 0 auto;
+  display: inline-block;
+  width: 100%;
+  max-width: 900px;
+}
+.users-container{
+  margin: 20px auto;
+}
+.user-container:hover{
+  background-color: #eff1f7 !important;
+}

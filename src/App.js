@@ -9,16 +9,17 @@ class App extends Component {
   handleLogout = (e)=>{
     //e.preventDefault();
     AuthStore.deauthenticate();
+    this.setState();
     }
   render() {
     var loginLink=(
-        <li className="nav-item"><Link to="/login" onClick={this.handleLogout}>{AuthStore.isAuthenticated() ? "Logout" : "Login"}</Link></li>
+        <li className="nav-item"><Link to="/login">Login</Link></li>
     );
-    // if(Store.isAuthenticated()){
-    //   loginLink=(
-    //     <li className="nav-item"><a onClick={this.handleLogout}>Logout</a></li>
-    //   )
-    // }
+    if(AuthStore.isAuthenticated()){
+      loginLink=(
+        <li className="nav-item"><a onClick={this.handleLogout}>Logout</a></li>
+      )
+    }
     return (
       <MuiThemeProvider>
 
@@ -29,7 +30,7 @@ class App extends Component {
 
           <ul className="navbar">
             <li className="nav-item"><Link to="/">Events</Link></li>
-
+            <li className="nav-item"><Link to="/vereine">Vereine</Link></li>
             {loginLink}
           </ul>
         </div>
