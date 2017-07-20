@@ -5,7 +5,7 @@ import DateDifference from './helperComponents/DateDifference';
 import DistHelper from './helperComponents/DistHelper';
 import UserHelper from './helperComponents/UserHelper';
 import GroupHelper from './helperComponents/GroupHelper';
-
+// import GoogleMap from './helperComponents/GoogleMap';
 class Event extends Component {
   render(){
     var event = this.props.event;
@@ -28,6 +28,7 @@ class Event extends Component {
         </div>
         <h4 className="event-title">{event.title}</h4>
         <p>{event.description}</p>
+        {/* <GoogleMap center={{lat:event.lat,lng:event.lng}}/> */}
       </Paper>
     );
   }

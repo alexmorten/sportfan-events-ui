@@ -20,11 +20,12 @@ class App extends Component {
         <li className="nav-item"><a onClick={this.handleLogout}>Logout</a></li>
       )
     }
+    console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
     return (
       <MuiThemeProvider>
 
       <div className="App">
-
+        
         <div className="App-header">
           <div><img src={logo} className="App-logo" alt="logo" /></div>
 

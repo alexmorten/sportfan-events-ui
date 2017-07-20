@@ -15,7 +15,7 @@ class Events extends Component{
   }
   getEvents = (lat=this.state.lat,lng=this.state.lng)=>{
     if(lat && lng){
-      Store.query("events",{lat:lat,lng:lat},(events)=>{
+      Store.query("events",{lat:lat,lng:lng},(events)=>{
           this.setState({events:events});
         },(failResponse)=>{
           console.log(failResponse);

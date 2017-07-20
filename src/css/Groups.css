@@ -1,6 +1,7 @@
 .sub-groups-container{
   text-align: center;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 .sub-group-item{

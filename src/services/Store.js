@@ -1,7 +1,11 @@
 import StorageAdaptor from './StorageAdaptor';
 
-//const API_URL = "https://sportfan-events-api.herokuapp.com/";
-const API_URL = "http://localhost:3000/";
+var API_URL = "https://sportfan-events-api.herokuapp.com/";
+if(process.env.NODE_ENV === "development"){
+   API_URL = "http://localhost:3000/";
+
+}
+console.log(process.env);
 
 
 function receive(url,cb,fail,disableCache){
