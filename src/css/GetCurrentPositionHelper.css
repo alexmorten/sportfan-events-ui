@@ -1,0 +1,14 @@
+.get-current-position-check{
+top:15px;
+right:-20px;
+  position: absolute;
+}
+.get-current-position-loading{
+bottom: -2px;
+right: 0;
+width: 100%;
+  position: absolute;
+}
+.get-current-position{
+  position: relative;
+}

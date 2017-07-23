@@ -16,6 +16,7 @@ class EventFilterBar extends Component{
       exclude_future:false,
       startDate:null,
       endDate:null,
+      dist:null
     }
   }
 
@@ -64,28 +65,28 @@ class EventFilterBar extends Component{
       <div className="filter-bar">
 
         <VerticalDivider/>
-        <div className="location-filter">
+        <div className="location-filter" >
           <LocationFormHelper onLocationChange={this.onPositionChange}/>
         </div>
         <VerticalDivider/>
-
-        <div className="query-filter">
-          <TextField name="query" floatingLabelText="Suchen" type="text" value={this.state.filter.query} onChange={this.onFilterChange} fullWidth={false}/>
+        <div className="dist-filter" >
+          <TextField name="dist" floatingLabelText="Distanz" type="number" value={this.state.filter.dist} onChange={this.onFilterChange} fullWidth={false}  style={{width:"70%"}}/>
+        <span>  km</span>
         </div>
+
         <VerticalDivider/>
-        <div className="dist-filter">
-          <TextField name="dist" floatingLabelText="Distanz" type="number" value={this.state.filter.dist} onChange={this.onFilterChange} fullWidth={false}/>
-          km
+        <div className="query-filter" >
+          <TextField name="query" floatingLabelText="Suchen" type="text" value={this.state.filter.query} onChange={this.onFilterChange} fullWidth={false} disableAutoFocus={false} style={{width:"auto"}}/>
+        </div>
+
+        <VerticalDivider/>
+        <div className="small-filters" >
+          <ToggleForm name="include_past" toggle={this.state.filter.include_past} onClick={this.onFilterChange} text="mit vergangenen Events"/>
+          <ToggleForm name="exclude_future" toggle={this.state.filter.exclude_future} onClick={this.onFilterChange} text="nur vergangene Events"/>
         </div>
         <VerticalDivider/>
         <div className="date-range-filter">
           <RangeSelector onSubmit={this.onRangeChange}/>
-        </div>
-        <VerticalDivider/>
-        <div className="small-filters">
-          <ToggleForm name="include_past" toggle={this.state.filter.include_past} onClick={this.onFilterChange} text="mit vergangenen Events"/>
-          <ToggleForm name="exclude_future" toggle={this.state.filter.exclude_future} onClick={this.onFilterChange} text="nur vergangene Events"/>
-
         </div>
         <VerticalDivider/>
       </div>

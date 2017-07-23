@@ -8,6 +8,8 @@
     "query-string": "^4.3.4",
     "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.6.0",
+    "react-addons-shallow-compare": "^15.6.0",
+    "react-dates": "^12.3.0",
     "react-dom": "^15.6.1",
     "react-infinite-calendar": "^2.3.1",
     "react-router-dom": "^4.1.1",

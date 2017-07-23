@@ -23,7 +23,9 @@ function ifGranted(cb,fail){
       if(permission.state === "granted"){
         cb()
       }else{
-        fail();
+        if(fail){
+          fail();
+        }
       }
     });
   }

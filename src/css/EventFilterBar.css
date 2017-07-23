@@ -6,8 +6,11 @@
   justify-content: center;
 }
 .location-filter{
-
+display: inline-block;
 }
 .query-filter{
 
+}
+.dist-filter{
+  max-width: 100px;
 }

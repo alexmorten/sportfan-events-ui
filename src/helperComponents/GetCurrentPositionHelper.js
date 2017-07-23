@@ -3,6 +3,8 @@ import Geo from '../services/Geo';
 import FlatButton from 'material-ui/FlatButton';
 import LinearProgress from 'material-ui/LinearProgress';
 import Toggle from './Toggle';
+import FontIcon from 'material-ui/FontIcon';
+import '../css/GetCurrentPositionHelper.css';
 class GetCurrentPositionHelper extends Component{
 state={
   loading:false,
@@ -29,11 +31,15 @@ componentDidMount(){
 }
   render(){
     return(
-    <div className={this.props.className}>
-      <FlatButton onClick={this.onClick}> Mich orten!</FlatButton>
-      <Toggle toggle={this.state.loading}>
+    <div className={this.props.className+" get-current-position"}>
+      <FlatButton onClick={this.onClick} disabled={this.state.loading}> Mich orten!</FlatButton>
+      <Toggle toggle={this.state.finished} className="get-current-position-check">
+        <FontIcon className="material-icons">check</FontIcon>
+      </Toggle>
+      <Toggle toggle={this.state.loading} className="get-current-position-loading">
         <LinearProgress/>
       </Toggle>
+
     </div>
   )
   }

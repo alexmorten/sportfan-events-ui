@@ -1,67 +1,55 @@
 import InfiniteCalendar, {Calendar,withRange} from 'react-infinite-calendar';
-
-import 'react-infinite-calendar/styles.css';
+import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
+import 'react-dates/lib/css/_datepicker.css';
+import '../css/RangeSelector.css';
 import React, {Component} from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-
+import Slider from './Slider';
 class RangeSelector extends Component{
   state={
-    open:false
+    startDate:null,
+    endDate:null
   }
-  handleClose=()=>{
-    this.setState({open:false});
-  }
-  handleSubmit=()=>{
-    this.setState({open:false});
-    if(this.dates && this.dates.startDate && this.dates.endDate){
-      this.props.onSubmit(this.dates);
+
+
+  handleSelection = ({startDate,endDate})=>{
+    console.log(startDate);
+    console.log(endDate);
+    this.setState({startDate,endDate});
+    if(startDate && endDate){
+      var newStartDate = startDate.toDate().getTime()/1000|0;
+      var newEndDate = new Date(endDate.toDate().getTime()+(24*60*60*1000)).getTime()/1000|0 ;
+      var obj={
+        startDate:newStartDate,
+        endDate:newEndDate
+      }
+      this.props.onSubmit(obj);
+    }else if (!startDate && !endDate) {
+      this.props.onSubmit({startDate:null,endDate:null});
     }
   }
-  handleSelect = (a)=>{
-  
-    var newEnd = new Date(a.end.getTime()+(24*60*60*1000));
-    console.log(newEnd);
-    this.dates={startDate:a.start.getTime()/1000|0,endDate:newEnd.getTime()/1000|0};
-  }
-  handleOpen = ()=>{
-    this.setState({open:true});
-  }
-  handleClear=()=>{
-    this.setState({open:false});
-    this.props.onSubmit({startDate:null,endDate:null});
-  }
-  render(){
-    const actions = [
-  <FlatButton
-    label="Löschen"
-    primary={true}
-    onTouchTap={this.handleClear}
-  />,
-  <FlatButton
-    label="Ok"
-    primary={true}
-    keyboardFocused={true}
-    onTouchTap={this.handleSubmit}
-  />,
-];
-    return(
-      <div>
-        <RaisedButton label="Zeitraum eingrenzen" onTouchTap={this.handleOpen} />
-        <Dialog
-          title="Dialog With Actions"
-          actions={actions}
-          modal={false}
-          open={this.state.open}
-          onRequestClose={this.handleClose}
-        >
-          <InfiniteCalendar Component={withRange(Calendar)}
-             displayOptions={{layout: 'portrait',showHeader: false}}
-             locale={{ weekStartsOn: 1}}
 
-             onSelect={this.handleSelect}/>
-        </Dialog>
+
+  render(){
+
+    return(
+      <div className="range-selector-container">
+
+            <DateRangePicker
+              startDate={this.state.startDate}
+              endDate={this.state.endDate}
+              onDatesChange={this.handleSelection}
+              focusedInput={this.state.focusedInput}
+              onFocusChange={focusedInput => this.setState({ focusedInput })}
+              isOutsideRange={() => false}
+              orientation={window.innerHeight > window.innerWidth ? "vertical" : "horizontal"}
+              showClearDates={true}
+              startDatePlaceholderText="Von"
+              endDatePlaceholderText="Bis"
+              firstDayOfWeek={1}/>
+
       </div>
     );
   }

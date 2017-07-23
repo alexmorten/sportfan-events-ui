@@ -15,7 +15,7 @@ class LocationFormHelper extends Component{
 
   setCoords = (lat,lng)=>{
     var location = {lat:lat,lng:lng};
-    this.setState({center:location,mapOpen:true});
+    this.setState({center:location});
     this.props.onLocationChange(location);
   }
   setLocation = (latLng)=>{
@@ -24,7 +24,7 @@ class LocationFormHelper extends Component{
   }
   goToLocation = (location) =>{
     this.setCoords(location.lat,location.lng);
-    this.setState({mapOpen:true});
+    //this.setState({mapOpen:true});
   }
   toggleMap=()=>{
     this.setState({mapOpen: !this.state.mapOpen});
@@ -32,20 +32,30 @@ class LocationFormHelper extends Component{
   render(){
     return(
       <div>
+      <div className="location-form-helper-flex">
         {/* <TextField name="address" floatingLabelText="Addresse" type="text" value={this.state.address} onChange={this.onAddressChange} fullWidth={true}/> */}
+        <div className="">
         <GooglePlaceAutocomplete
           floatingLabelText="Addresse"
           // value="5"
         	// Function to return lat and lng
+          style={{width:"270px"}}
         	results={this.setCoords}
         />
-        <FlatButton onClick={this.toggleMap}>Karte {this.state.mapOpen ? "verstecken" : "anzeigen"}</FlatButton>
         <span className="latlng"> {this.state.center.lat} , {this.state.center.lng}</span>
-        <GetCurrentPositionHelper onSubmit={this.goToLocation} className="current-location"/>
+
+        </div>
+        <div className="">
+          <GetCurrentPositionHelper onSubmit={this.goToLocation} className="current-location"/>
+        <br/>
+        <FlatButton onClick={this.toggleMap}>Karte {this.state.mapOpen ? "verstecken" : "anzeigen"}</FlatButton>
+        </div>
+      </div>
+
         <Toggle toggle={this.state.mapOpen}>
           <GoogleMap center={this.state.center}/>
         </Toggle>
-      </div>
+        </div>
     )
   }
 }
