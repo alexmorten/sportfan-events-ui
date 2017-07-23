@@ -4,8 +4,7 @@ import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 import './css/Registrate.css';
-import PositionGetter from './helperComponents/PositionGetter';
-
+import LocationFormHelper from './helperComponents/LocationFormHelper';
 class Registrate extends Component{
   state={
     loading:false,
@@ -116,7 +115,7 @@ class Registrate extends Component{
         <br/>
         <TextField  floatingLabelText="Website" name="website" type="url" value={this.state.website} onChange={this.handleChange}/>
         <br/>
-        <PositionGetter onChange={this.onPositionChange}/>
+        <LocationFormHelper onLocationChange={this.onPositionChange}/>
         <br/>
       {necessary}  <TextField  floatingLabelText="email" name="email" type="email" value={this.state.email} onChange={this.handleChange}/>
 

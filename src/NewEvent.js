@@ -28,19 +28,15 @@ class NewEvent extends AuthComponent{
     this.setState({lat:location.lat,lng:location.lng});
   }
   onDateChange=(_, date)=>{
-    console.log(date);
     this.setState({date:date});
   }
   onTimeChange=(_,time)=>{
     var date = this.state.date;
-    console.log(date);
-    console.log(time);
     date.setHours(time.getHours());
     date.setMinutes(time.getMinutes());
     this.setState({date:date});
   }
   onGroupChange= (group)=>{
-    console.log(group);
     this.setState({selectedGroup:group});
   }
   timePickerDisabled = ()=>{
@@ -91,8 +87,7 @@ class NewEvent extends AuthComponent{
         <DatePicker hintText="Datum" onChange={this.onDateChange} name="date" value={this.state.date}/>
         <TimePicker hintText="Uhrzeit" disabled={this.timePickerDisabled()} onChange={this.onTimeChange} format="24hr" />
         <LocationFormHelper onLocationChange={this.onLocationChange}/>
-        <TextField name="lat" floatingLabelText="Latitude" type="number" value={this.state.lat} onChange={this.onChange} fullWidth={true}/>
-        <TextField name="lng" floatingLabelText="Longitude" type="number" value={this.state.lng} onChange={this.onChange} fullWidth={true}/>
+        {/* <TextField name="lat" floatingLabelText="Latitude" type="number" value={this.state.lat} onChange={this.onChange} fullWidth={true}/> */}
         <GroupSelector dataUrl={"users/"+userDetails.id+"/groups"} onSelect={this.onGroupChange} selected={this.state.selectedGroup}/>
         <FlatButton label="Post" onClick={this.onSubmit} type="submit" disabled={!this.dataValid()}/>
         </form>

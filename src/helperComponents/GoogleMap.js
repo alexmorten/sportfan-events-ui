@@ -7,25 +7,25 @@ class GoogleMap extends Component {
   componentDidMount(){
   if(window.google){
     this.map = new window.google.maps.Map(this.mapRef,{
-      zoom:8,
+      zoom:12,
       center: this.props.center
     });
     this.marker = new window.google.maps.Marker({
     map: this.map,
-    position: this.props.center,
-    draggable:true
+    position: this.props.center
   });
-  var dragFunc = (event)=>{
-    console.log(event.latLng.lat());
-    console.log(event);
+
+
   }
-  this.marker.addListener("drag",dragFunc);
-  this.marker.addListener("dragend",dragFunc);
   }
-  console.log(this.marker);
+  componentDidUpdate(prevProps, prevState){
+    if (prevProps.center !== this.props.center) {
+      this.map.panTo(this.props.center);
+      this.marker.setPosition(this.props.center)
+    }
   }
   render(){
-  return(  <div className="map" ref={this.setMapRef} style={{width:'100%',height:'500px'}}></div>)
+  return(  <div className="map" ref={this.setMapRef} style={{width:'100%',height:'300px',maxWidth:"300px",margin:'auto'}}></div>)
   }
 }
 export default GoogleMap;

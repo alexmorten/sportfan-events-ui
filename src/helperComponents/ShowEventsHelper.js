@@ -4,16 +4,18 @@ import Action from './Action';
 import '../css/ShowEventsHelper.css';
 import Event from '../Event';
 import Loading from './Loading';
-
+import Divider from 'material-ui/Divider';
+import EventFilterBar from './EventFilterBar';
 class ShowEventsHelper extends Component{
   state={
     open:false,
     loaded:false,
-    events:[]
+    events:[],
+    filter:{}
   }
-  getEvents = ()=>{
+  getEvents = (filter=this.state.filter)=>{
     var url = this.props.dataUrl;
-    Store.receive(url,(events)=>{
+    Store.query(url,filter,(events)=>{
       this.setState({events:events,loaded:true});
     },(failResponse)=>{
       console.log(failResponse);
@@ -25,6 +27,10 @@ class ShowEventsHelper extends Component{
   }
   close = (e)=>{
     this.setState({open:false});
+  }
+  onFilterChange = (filter)=>{
+    this.setState({filter:filter});
+    this.getEvents(filter);
   }
   render(){
     var loadingIndicator = (<div></div>);
@@ -48,9 +54,13 @@ class ShowEventsHelper extends Component{
       return(
         <div className="show-events-container">
           <Action onClick={this.close}>weniger Anzeigen</Action>
+          <Divider/>
+          <EventFilterBar onFilterChange={this.onFilterChange}/>
           <div className="show-events">
             {eventItems}
           </div>
+          <Divider/>
+
           {loadingIndicator}
         </div>
       )

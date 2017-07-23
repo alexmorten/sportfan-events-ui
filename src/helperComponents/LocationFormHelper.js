@@ -1,78 +1,50 @@
 import React, {Component} from 'react';
 import '../css/LocationFormHelper.css';
-import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
-
+import GooglePlaceAutocomplete from 'material-ui-autocomplete-google-places';
+import Toggle from './Toggle';
+import GoogleMap from './GoogleMap';
+import GetCurrentPositionHelper from './GetCurrentPositionHelper';
 class LocationFormHelper extends Component{
   state={
     address:"",
-    lat:null,
-    lng:null
+    center:{lat:52.168805, lng:7.530960}, //emsdetten
+    mapOpen:false
   }
-  setMapElement = (element)=>{
-    this.mapElement=element;
-  }
-  onAddressChange = (e)=>{
-    e.preventDefault();
-    this.setState({address:e.target.value});
+
+
+  setCoords = (lat,lng)=>{
+    var location = {lat:lat,lng:lng};
+    this.setState({center:location,mapOpen:true});
+    this.props.onLocationChange(location);
   }
   setLocation = (latLng)=>{
     var location = {lat:latLng.lat(),lng:latLng.lng()}
-    this.setState(location);
-    this.props.onLocationChange(location);
+    this.setCoords(location.lat,location.lng);
   }
-  codeAddress = (e) => {
-    e.preventDefault();
-    var address =this.state.address;
-    this.geocoder.geocode( { 'address': address}, (results, status)=> {
-      if (status == 'OK') {
-        this.map.setCenter(results[0].geometry.location);
-        console.log(results);
-        this.setLocation(results[0].geometry.location)
-        this.marker.setPosition(results[0].geometry.location)
-      } else {
-        alert('Geocode was not successful for the following reason: ' + status);
-      }
-    });
+  goToLocation = (location) =>{
+    this.setCoords(location.lat,location.lng);
+    this.setState({mapOpen:true});
   }
-  codeLocation = (event)=>{
-    var latLng = event.latLng;
-    this.setLocation(latLng);
-    this.geocoder.geocode({location:latLng},(results,status)=>{
-      if(status == "OK"){
-        if(results[1]){
-          this.setState({address:results[1].formatted_address})
-        }else{
-          alert('No results found')
-        }
-      }else {
-        alert('Geocode was not successful for the following reason: ' + status);
-      }
-    });
-  }
-  componentDidMount(){
-    if(window.google){
-      var emsdetten ={lat:52.168805, lng:7.530960}
-      this.geocoder = new window.google.maps.Geocoder();
-      this.map = new window.google.maps.Map(this.mapElement,{
-        center:emsdetten,
-        zoom:13
-      });
-      this.marker = new window.google.maps.Marker({
-        map:this.map,
-        position:emsdetten,
-        draggable:true
-      });
-      this.marker.addListener('dragend',this.codeLocation);
-
-    }
+  toggleMap=()=>{
+    this.setState({mapOpen: !this.state.mapOpen});
   }
   render(){
     return(
       <div>
-        <TextField name="address" floatingLabelText="Addresse" type="text" value={this.state.address} onChange={this.onAddressChange} fullWidth={true}/>
-        <FlatButton onClick={this.codeAddress}>Finden!</FlatButton>
-        <div className="location-form-map" ref={this.setMapElement}></div>
+        {/* <TextField name="address" floatingLabelText="Addresse" type="text" value={this.state.address} onChange={this.onAddressChange} fullWidth={true}/> */}
+        <GooglePlaceAutocomplete
+          floatingLabelText="Addresse"
+          // value="5"
+        	// Function to return lat and lng
+        	results={this.setCoords}
+        />
+        <FlatButton onClick={this.toggleMap}>Karte {this.state.mapOpen ? "verstecken" : "anzeigen"}</FlatButton>
+        <span className="latlng"> {this.state.center.lat} , {this.state.center.lng}</span>
+        <GetCurrentPositionHelper onSubmit={this.goToLocation} className="current-location"/>
+        <Toggle toggle={this.state.mapOpen}>
+          <GoogleMap center={this.state.center}/>
+        </Toggle>
       </div>
     )
   }

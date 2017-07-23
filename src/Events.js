@@ -5,37 +5,30 @@ import Store from './services/Store';
 import IfVerified from './helperComponents/IfVerified';
 import Event from './Event';
 import RaisedButton from 'material-ui/RaisedButton';
-import PositionGetter from './helperComponents/PositionGetter';
-
+import EventFilterBar from './helperComponents/EventFilterBar';
 class Events extends Component{
   state={
     events:[],
-    lat:null,
-    lng:null
+    filter:{}
   }
-  getEvents = (lat=this.state.lat,lng=this.state.lng)=>{
-    if(lat && lng){
-      Store.query("events",{lat:lat,lng:lng},(events)=>{
+  getEvents = (filter=this.state.filter)=>{
+    console.log("getting events");
+      Store.query("events",filter,(events)=>{
           this.setState({events:events});
         },(failResponse)=>{
           console.log(failResponse);
-        })
-    }else{
-      Store.receive("events",(events)=>{
-          this.setState({events:events});
-        },(failResponse)=>{
-          console.log(failResponse);
-        });
-    }
+        },true)
+
   }
 
   componentDidMount(){
     this.getEvents();
   }
-  onPositionChange=(pos)=>{
-    this.setState(pos);
-    this.getEvents(pos.lat,pos.lng);
+  onFilterChange = (filter)=>{
+    this.setState({filter:filter});
+    this.getEvents(filter);
   }
+
 render(){
   var eventItems = this.state.events.map((event)=>{
     return ( <Event key={event.id} event={event}/>);
@@ -51,9 +44,7 @@ render(){
           <RaisedButton primary={true} label="Event Hinzufügen" style={newButtonStyle}/>
         </Link>
       </IfVerified>
-      <div>
-        <PositionGetter onChange={this.onPositionChange}/>
-      </div>
+      <EventFilterBar onFilterChange={this.onFilterChange}/>
       {eventItems}
     </div>
   );

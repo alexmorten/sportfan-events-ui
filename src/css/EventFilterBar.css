@@ -1,0 +1,13 @@
+.filter-bar{
+  width: 100%;
+  background-color: rgba(106,188,250,.2);
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.location-filter{
+
+}
+.query-filter{
+
+}
