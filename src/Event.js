@@ -5,6 +5,8 @@ import DateDifference from './helperComponents/DateDifference';
 import DistHelper from './helperComponents/DistHelper';
 import UserHelper from './helperComponents/UserHelper';
 import GroupHelper from './helperComponents/GroupHelper';
+import Chip from 'material-ui/Chip';
+import {blue200} from 'material-ui/styles/colors';
 // import GoogleMap from './helperComponents/GoogleMap';
 class Event extends Component {
   render(){
@@ -16,8 +18,14 @@ class Event extends Component {
       maxWidth:'600px',
       margin:'0 auto'
     }
+    var tagItems = event.tags.map((tag)=>{
+        return <Chip style={{margin:4,display:"inline-block",position:"static"}} backgroundColor={blue200}>{tag.name}</Chip>
+    });
     return(
       <Paper style={paperStyle}>
+        <div className="event-tag-bar">
+          {tagItems}
+        </div>
         <div className="event-info-bar">
           <DateDifference date={event.date} className="event-time"/>
           <DistHelper dist={event.dist} className="event-dist"/>

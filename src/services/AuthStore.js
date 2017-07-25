@@ -86,6 +86,23 @@ function send(url,obj,cb,fail){
     }
   });
 }
+function promiseSend(url,obj){
+  if(!isAuthenticated()){
+    return "login";
+  }
+
+  var sendHeaders = {
+    'accept': 'application/json',
+    'Content-Type': 'application/json'
+  };
+  var completeHeaders=constructHeadersForRequest(sendHeaders);
+return fetch(API_URL+url,{
+    headers: completeHeaders,
+    method:"post",
+    body:JSON.stringify(obj)
+  }).then(checkStatus)
+  .then(parseJSON);
+}
 function update(url,obj,cb,fail){
   if(!isAuthenticated()){
     return "login";
@@ -250,5 +267,5 @@ function constructQueryParams(params){
 
   return queryString;
 }
-const AuthStore = {authenticate,deauthenticate,receive,query,send,update,destroy,isAuthenticated,getCurrentUserDetails,constructQueryParams,registrate};
+const AuthStore = {authenticate,deauthenticate,receive,query,send,promiseSend,update,destroy,isAuthenticated,getCurrentUserDetails,constructQueryParams,registrate};
 export default AuthStore;

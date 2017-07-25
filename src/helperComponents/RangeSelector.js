@@ -1,12 +1,7 @@
-import InfiniteCalendar, {Calendar,withRange} from 'react-infinite-calendar';
-import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
+import { DateRangePicker} from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import '../css/RangeSelector.css';
 import React, {Component} from 'react';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import Slider from './Slider';
 class RangeSelector extends Component{
   state={
     startDate:null,
@@ -48,7 +43,8 @@ class RangeSelector extends Component{
               showClearDates={true}
               startDatePlaceholderText="Von"
               endDatePlaceholderText="Bis"
-              firstDayOfWeek={1}/>
+              firstDayOfWeek={1}
+              displayFormat="DD.MM.YYYY"	/>
 
       </div>
     );

@@ -2,12 +2,12 @@
   max-height: 0;
   transition: all 500ms;
   overflow: hidden;
-  max-width: 200px;
+
   margin: auto;
   pointer-events: none;
 }
 .slider-container.open{
-  max-width: 1000px;
+
   max-height: 800px;
   pointer-events: auto;
 }

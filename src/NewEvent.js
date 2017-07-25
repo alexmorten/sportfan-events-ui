@@ -8,6 +8,7 @@ import TimePicker from 'material-ui/TimePicker';
 import GroupSelector from './helperComponents/GroupSelector';
 import './css/NewEvent.css';
 import LocationFormHelper from './helperComponents/LocationFormHelper';
+import TagFormHelper from './helperComponents/TagFormHelper';
 class NewEvent extends AuthComponent{
   state={
     title:"",
@@ -15,7 +16,8 @@ class NewEvent extends AuthComponent{
     date:null,
     lat:null,
     lng:null,
-    selectedGroup:null
+    selectedGroup:null,
+    selectedTags:[]
   }
   onChange = (e)=>{
 
@@ -49,8 +51,9 @@ class NewEvent extends AuthComponent{
       date=this.state.date,
       lat=this.state.lat,
       lng = this.state.lng,
-      group = this.state.selectedGroup;
-      if(title && description && date && lat && lng && group){
+      group = this.state.selectedGroup,
+      selectedTags = this.state.selectedTags;
+      if(title && description && date && lat && lng && group && selectedTags.length > 0){
         var newPost={
           title:title,
           description:description,
@@ -59,12 +62,32 @@ class NewEvent extends AuthComponent{
           lng:lng,
           group_id:group.id
         };
-        this.post("events",newPost,()=>{
-          this.props.history.push("/");
-          this.props.history.goForward();
+        var that = this;
+        this.post("events",newPost,(event)=>{
+          var newTags = selectedTags.filter((tag)=>{return tag.isNew}).map((tag)=>{return {name:tag.label}});
+          var oldTags = selectedTags.filter((tag)=>{return !tag.isNew}).map((tag)=>{return {name:tag.label,id:tag.value}});
+
+          var sendTagPromises = newTags.map( (tag)=>{return AuthStore.promiseSend("tags",tag)});
+          Promise.all(sendTagPromises).then(function(sendTags){
+            console.log(arguments);
+            console.log(sendTags);
+            var existingTags = oldTags;
+            for (var i = 0; i < sendTags.length; i++) {
+               existingTags.push(sendTags[i]);
+            }
+            console.log(existingTags);
+            var sendLinkPromises = existingTags.map((tag)=>{return AuthStore.promiseSend("links",{tag_id:tag.id,event_id:event.id})});
+            Promise.all(sendLinkPromises).then(function(){
+              console.log(arguments);
+              that.props.history.push("/");
+              that.props.history.goForward();
+            })
+          });
         });
 
       }
+      // this.props.history.push("/");
+      // this.props.history.goForward();
   }
   dataValid = ()=>{
     var title=this.state.title,
@@ -72,8 +95,9 @@ class NewEvent extends AuthComponent{
       date=this.state.date,
       lat=this.state.lat,
       lng = this.state.lng,
-      group = this.state.selectedGroup;
-    return (title && description && date && lat && lng && group)
+      group = this.state.selectedGroup,
+      selectedTags = this.state.selectedTags;
+    return (title && description && date && lat && lng && group && selectedTags.length >0)
   }
   render(){
     var userDetails = AuthStore.getCurrentUserDetails();
@@ -84,6 +108,7 @@ class NewEvent extends AuthComponent{
         <TextField name="title" floatingLabelText="Titel" type="text" value={this.state.title} onChange={this.onChange} fullWidth={true}/>
         <TextField name="description" floatingLabelText="Beschreibung"
           multiLine={true} type="text" value={this.state.description} onChange={this.onChange} fullWidth={true}/>
+        <TagFormHelper onChange={(vals)=>{this.setState({selectedTags:vals})}} selected={this.state.selectedTags}/>
         <DatePicker hintText="Datum" onChange={this.onDateChange} name="date" value={this.state.date}/>
         <TimePicker hintText="Uhrzeit" disabled={this.timePickerDisabled()} onChange={this.onTimeChange} format="24hr" />
         <LocationFormHelper onLocationChange={this.onLocationChange}/>

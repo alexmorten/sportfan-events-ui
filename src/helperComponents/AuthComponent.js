@@ -34,5 +34,10 @@ class AuthComponent extends Component{
       this.transitionToLogin();
     }
   }
+  componentDidMount(){
+    if(!AuthStore.isAuthenticated()){
+      this.transitionToLogin();
+    }
+  }
 }
 export default AuthComponent;
