@@ -18,8 +18,10 @@ class TagFormHelper extends Component {
       callback(error);
     },true);
   }
-  createNewOption = ({ label, labelKey, valueKey })=>{
-    return {label:label,value:new Date().getTime(),isNew:true};
+  createNewOption = (info)=>{
+    console.log(info.label);
+    var newOption = {label:info.label,value:new Date().getTime(),isNew:true};
+    return newOption;
   }
   render(){
     return(

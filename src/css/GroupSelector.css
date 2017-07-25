@@ -14,9 +14,26 @@ cursor:pointer;
   color: white;
 }
 .group-selector-group.selected{
-  background-color: #9db4fa;
+  background-color: #809df6;
   color: white;
 }
 .group-selector-group-childs{
   margin-left: 10px;
+}
+.groups-selector-group-container{
+  position: relative;
+}
+.group-selector-arrow{
+  position: absolute !important;
+  top: 0;
+  right: 0;
+  font-size: 38px !important;
+  font-weight: 200;
+  color: white !important;
+  text-shadow: 0 0 1px black;
+}
+.group-selector-arrow:hover{
+  background-color: #afc0f5;
+  cursor: pointer;
+  line-height: 100%;
 }

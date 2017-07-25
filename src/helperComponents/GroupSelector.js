@@ -4,7 +4,12 @@ import Loading from './Loading';
 //import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
 import '../css/GroupSelector.css';
+import Slider from './Slider';
+import FontIcon from 'material-ui/FontIcon';
 class Group extends Component{
+  state={
+    open:false
+  }
   onClick=()=>{
     this.props.onClick(this.props.group);
   }
@@ -15,12 +20,17 @@ class Group extends Component{
     var group = this.props.group;
     return(
       <div className="groups-selector-group-container">
+        {group.direct_sub_group_count > 0 ? (<FontIcon className="material-icons group-selector-arrow" onClick={()=>{this.setState({open:!this.state.open})}}>
+          {this.state.open ? "keyboard_arrow_up" : "keyboard_arrow_down"}</FontIcon>) : (<div></div>) }
+
         <div className={"group-selector-group"+ (this.isSelected() ? " selected" : "")} onClick={this.onClick}>
           <span>{group.name}</span>
 
         </div>
         <div className="group-selector-group-childs">
-          <Groups dataUrl={"groups/"+group.id+"/groups"} onClick={this.props.onClick} selected={this.props.selected}/>
+          <Slider open={this.state.open}>
+            <Groups dataUrl={"groups/"+group.id+"/groups"} onClick={this.props.onClick} selected={this.props.selected}/>
+          </Slider>
         </div>
       </div>
     )
