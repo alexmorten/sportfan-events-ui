@@ -60,7 +60,15 @@ function query(url,paramsObj,cb,fail,disableCache){
 
 
 }
+async function asyncQuery(url,paramsObj){
+  var headers = {
+    accept: 'application/json',
+  };
 
+  var result = await fetch(API_URL+url+constructQueryParams(paramsObj),{ headers:headers})
+  var response = checkStatus(result);
+  return parseJSON(response);
+}
 
 function checkStatus(response) {
 
@@ -72,7 +80,7 @@ function checkStatus(response) {
   error.status = response.statusText;
   error.response = response;
   console.log(error); // eslint-disable-line no-console
-  //throw error;
+  throw error;
 
 }
 
@@ -106,5 +114,5 @@ function constructQueryParams(params){
 
   return queryString;
 }
-const AuthStore = {receive,query,constructQueryParams};
+const AuthStore = {receive,query,asyncQuery,constructQueryParams};
 export default AuthStore;

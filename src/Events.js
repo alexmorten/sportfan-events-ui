@@ -38,14 +38,15 @@ render(){
   }
   return(
     <div>
-      <h4>Events</h4>
       <IfVerified>
         <Link to="new" >
           <RaisedButton primary={true} label="Event Hinzufügen" style={newButtonStyle}/>
         </Link>
       </IfVerified>
       <EventFilterBar onFilterChange={this.onFilterChange}/>
+      <div className="events-events">
       {eventItems}
+      </div>
     </div>
   );
 }

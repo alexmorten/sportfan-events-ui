@@ -1,6 +1,9 @@
 .show-events-container{
-
+margin: 10px;
 }
 .show-events{
   padding: 10px;
+}
+.show-events-action{
+  margin: 10px;
 }

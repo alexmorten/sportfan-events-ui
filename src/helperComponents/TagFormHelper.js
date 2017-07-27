@@ -19,7 +19,10 @@ class TagFormHelper extends Component {
     },true);
   }
   createNewOption = (info)=>{
-    console.log(info.label);
+
+
+    console.log("") // do not delete , doing so will introduce a nasty bug (for whatever reason?!) ( a network request  is also ok, however more costly)
+
     var newOption = {label:info.label,value:new Date().getTime(),isNew:true};
     return newOption;
   }
@@ -38,7 +41,8 @@ class TagFormHelper extends Component {
           placeholder="Sportart(-en)..."
           searchPromptText="Tippen zum Suchen"
           loadingPlaceholder="Laden..."
-          promptTextCreator={(label)=>{return ' "'+label+'" hinzufügen'}}
+          // promptTextCreator={(label)=>{return  `"${label}" hinzufügen`}}
+          promptTextCreator={(label)=>{return label}}
         />
       </div>
     );

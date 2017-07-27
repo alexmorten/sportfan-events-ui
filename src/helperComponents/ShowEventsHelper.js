@@ -40,7 +40,9 @@ class ShowEventsHelper extends Component{
     if(!this.state.open){
       if(this.props.event_count > 0){
         return(
-          <Action onClick={this.open}>{this.props.event_count} Events</Action>
+          <div className="show-events-container">
+            <Action onClick={this.open}>{this.props.event_count} Events</Action>
+          </div>
         );
       }else{
         return (<div></div>)
@@ -53,7 +55,7 @@ class ShowEventsHelper extends Component{
       })
       return(
         <div className="show-events-container">
-          <Action onClick={this.close}>weniger Anzeigen</Action>
+          <Action onClick={this.close} className="show-events-action">weniger Anzeigen</Action>
           <Divider/>
           <EventFilterBar onFilterChange={this.onFilterChange}/>
           <div className="show-events">

@@ -15,7 +15,6 @@ render(){
       <Route path="/" >
         <App>
         <Switch>
-
           <Route path="/register" component={Registrate}></Route>
           <Route path="/login" component={Login}></Route>
           <Route path="/vereine/:user_id" component={DetailedUser}></Route>

@@ -6,7 +6,7 @@
 }
 .group-selector-group{
 padding: 10px;
-transition: all 500ms;
+transition: all 400ms;
 cursor:pointer;
 }
 .group-selector-group:hover{

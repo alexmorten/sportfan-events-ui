@@ -109,12 +109,18 @@ class NewEvent extends AuthComponent{
         <TextField name="description" floatingLabelText="Beschreibung"
           multiLine={true} type="text" value={this.state.description} onChange={this.onChange} fullWidth={true}/>
         <TagFormHelper onChange={(vals)=>{this.setState({selectedTags:vals})}} selected={this.state.selectedTags}/>
+        <h5>Zeitpunkt auswählen</h5>
+
         <DatePicker hintText="Datum" onChange={this.onDateChange} name="date" value={this.state.date}/>
         <TimePicker hintText="Uhrzeit" disabled={this.timePickerDisabled()} onChange={this.onTimeChange} format="24hr" />
+        <h5>Ort auswählen</h5>
+
         <LocationFormHelper onLocationChange={this.onLocationChange}/>
         {/* <TextField name="lat" floatingLabelText="Latitude" type="number" value={this.state.lat} onChange={this.onChange} fullWidth={true}/> */}
+        <h5>Gruppe auswählen</h5>
+
         <GroupSelector dataUrl={"users/"+userDetails.id+"/groups"} onSelect={this.onGroupChange} selected={this.state.selectedGroup}/>
-        <FlatButton label="Post" onClick={this.onSubmit} type="submit" disabled={!this.dataValid()}/>
+        <FlatButton label="Erstellen" onClick={this.onSubmit} type="submit" disabled={!this.dataValid()}/>
         </form>
       </div>
     );

@@ -27,13 +27,16 @@ render(){
   if(this.state.loaded){
     var user = this.state.user;
     return (
+      <div>
       <Paper className="detailed-user-container">
         <h4>{user.name}</h4>
         <p>{user.description}</p>
         <p>Website: <a href={"https://"+user.website}>{user.website}</a></p>
-        <ShowEventsHelper dataUrl={"users/"+user.id+"/events"} event_count={user.event_count}/>
-        <Groups dataUrl={"users/"+user.id+"/groups"}/>
       </Paper>
+
+        <ShowEventsHelper dataUrl={"users/"+user.id+"/events"} event_count={user.event_count}/>
+        <Groups dataUrl={"users/"+user.id+"/groups"} user={user}/>
+      </div>
     )
   }else{
     return (

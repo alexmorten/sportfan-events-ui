@@ -1,10 +1,17 @@
+import StorageAdaptor from './StorageAdaptor';
 
 
 
 
-function getLocation(cb,fail) {
+function getLocation(cb,fail,disableCache) {
     if (navigator.geolocation) {
+      if(!disableCache){
+        StorageAdaptor.getResultFromCache("local-geo",cb);
+      }
         navigator.geolocation.getCurrentPosition((position)=>{
+          if(!disableCache){
+            StorageAdaptor.cacheResult("local-geo",position.coords);
+          }
           cb(position.coords);
         },(error)=>{
           if(fail){

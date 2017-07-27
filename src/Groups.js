@@ -7,6 +7,8 @@ import './css/Groups.css';
 import Divider from 'material-ui/Divider';
 import AuthStore from './services/AuthStore';
 import AddGroupHelper from './helperComponents/AddGroupHelper';
+import IfAdmin from './helperComponents/IfAdmin';
+
 class Group extends Component {
   render(){
     var group = this.props.group;
@@ -16,7 +18,7 @@ class Group extends Component {
         <h4>{group.name}</h4>
         <p>{group.description}</p>
         <ShowEventsHelper dataUrl={"groups/"+group.id+"/events"} event_count={group.event_count}/>
-        <Groups dataUrl={this.props.dataUrl}/>
+        <Groups dataUrl={this.props.dataUrl} user={this.props.user}/>
       </div>
     );
 
@@ -94,14 +96,16 @@ class Groups extends Component{
       if(selected){
          selectedItem = (
           <div className="selected-group-container">
-            <Group group={selected} dataUrl={"groups/"+selected.id+"/groups"}/>
+            <Group group={selected} dataUrl={"groups/"+selected.id+"/groups"} user={this.props.user}/>
           </div>)
       }
     return (
       <div>
         <div className="sub-groups-container">
           {subGroupItems}
-          <Paper className="sub-group-item"><AddGroupHelper add={this.addSubGroup} title="Hinzufügen"/></Paper>
+          <IfAdmin user={this.props.user}>
+            <Paper className="sub-group-item"><AddGroupHelper add={this.addSubGroup} title="Hinzufügen"/></Paper>
+          </IfAdmin>
         </div>
         {selectedItem}
       </div>

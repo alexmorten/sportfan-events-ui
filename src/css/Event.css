@@ -1,6 +1,10 @@
 .event-tag-bar{
   text-align: left;
 }
+.event-info-bar{
+  min-height: 25px;
+  text-align: center;
+}
 .event-info-bar span{
   color: lightgrey;
   margin: 5px;
@@ -30,4 +34,8 @@
 }
 .event-references .link:hover{
   text-decoration: underline;
+}
+.event-tag-chip span{
+  line-height: 28px !important;
+  font-size: 12px !important;
 }
