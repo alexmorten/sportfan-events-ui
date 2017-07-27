@@ -23,15 +23,18 @@ class DetailedUser extends Component{
   componentDidMount(){
     this.getUser();
   }
+
 render(){
   if(this.state.loaded){
     var user = this.state.user;
+    var linkToWebsiteSplit = user.website.split("//");
+    var linkToWebsite = linkToWebsiteSplit[linkToWebsiteSplit.length-1];
     return (
       <div>
       <Paper className="detailed-user-container">
         <h4>{user.name}</h4>
         <p>{user.description}</p>
-        <p>Website: <a href={"https://"+user.website}>{user.website}</a></p>
+        <p>Website: <a href={"https://"+linkToWebsite}>{user.website}</a></p>
       </Paper>
 
         <ShowEventsHelper dataUrl={"users/"+user.id+"/events"} event_count={user.event_count}/>

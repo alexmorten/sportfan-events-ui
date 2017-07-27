@@ -8,6 +8,6 @@
 }
 .slider-container.open{
 
-  max-height: 100px;
+  max-height: 1000px;
   pointer-events: auto;
 }

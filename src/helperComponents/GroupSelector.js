@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import Store from '../services/Store';
 import Loading from './Loading';
-//import Divider from 'material-ui/Divider';
+// import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
 import '../css/GroupSelector.css';
 import Slider from './Slider';

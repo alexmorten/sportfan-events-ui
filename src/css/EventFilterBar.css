@@ -4,6 +4,7 @@
   display:flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin: 20px 0;
 }
 .location-filter{
 display: inline-block;

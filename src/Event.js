@@ -21,7 +21,7 @@ class Event extends Component {
       // console.log(event);
       // console.log(event.tags);
     var tagItems = event.tags.map((tag)=>{
-        return <Chip className="event-tag-chip" style={{margin:4,display:"inline-block",position:"static"}} backgroundColor={blue200}>{tag.name}</Chip>
+        return <Chip key={tag.id} className="event-tag-chip" style={{margin:4,display:"inline-block",position:"static"}} backgroundColor={blue200}>{tag.name}</Chip>
     });
     return(
       <Paper style={paperStyle}>

@@ -23,5 +23,13 @@ function areObjectsEquivalent(a, b) {
     // are considered equivalent
     return true;
 }
-const HelperFuncs = {areObjectsEquivalent};
+function isInArray(arr,item,accesFunc){
+  for (var i = 0; i < arr.length; i++) {
+    if(accesFunc(arr[i]) === accesFunc(item)){
+      return true;
+    }
+  }
+  return false
+}
+const HelperFuncs = {areObjectsEquivalent,isInArray};
 export default HelperFuncs;

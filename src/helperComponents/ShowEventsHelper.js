@@ -56,6 +56,8 @@ class ShowEventsHelper extends Component{
       return(
         <div className="show-events-container">
           <Action onClick={this.close} className="show-events-action">weniger Anzeigen</Action>
+          <br/>
+          <br/>
           <Divider/>
           <EventFilterBar onFilterChange={this.onFilterChange}/>
           <div className="show-events">

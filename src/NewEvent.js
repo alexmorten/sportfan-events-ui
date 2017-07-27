@@ -30,7 +30,14 @@ class NewEvent extends AuthComponent{
     this.setState({lat:location.lat,lng:location.lng});
   }
   onDateChange=(_, date)=>{
-    this.setState({date:date});
+    if(!this.state.date){
+      this.setState({date:date});
+    }else{ // date and time already set
+      var oldDate = this.state.date;
+      date.setHours(oldDate.getHours());
+      date.setMinutes(oldDate.getMinutes());
+      this.setState({date:date});
+    }
   }
   onTimeChange=(_,time)=>{
     var date = this.state.date;

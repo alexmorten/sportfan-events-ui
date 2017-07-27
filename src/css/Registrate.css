@@ -1,6 +1,7 @@
 .register-form{
   max-width: 300px;
   margin: 40px auto;
+  text-align: left;
 }
 .error-small{
   color: red;

@@ -65,7 +65,7 @@ class Registrate extends Component{
   render(){
     if(this.state.sent){
       return(
-        <h3>Check your emails for the confirmation!</h3>
+        <h3>Überprüfe deine e-mails für die Bestätigung!</h3>
       );
     }
     const style={
@@ -108,26 +108,26 @@ class Registrate extends Component{
     var necessary= (<span className="necessary">*</span>)
     return(
       <form className="register-form" style={style.container} >
-        <h4>Create an account</h4>
+        <h4>Account erstellen</h4>
       {necessary}  <TextField  floatingLabelText="Name" name="name" type="text" value={this.state.name} onChange={this.handleChange} />
         <br/>
-        <TextField  floatingLabelText="Beschreibung" name="description" type="text" value={this.state.description} onChange={this.handleChange}/>
+        <TextField  floatingLabelText="Beschreibung" name="description" type="text" value={this.state.description} onChange={this.handleChange} multiLine={true}/>
         <br/>
         <TextField  floatingLabelText="Website" name="website" type="url" value={this.state.website} onChange={this.handleChange}/>
         <br/>
         <LocationFormHelper onLocationChange={this.onPositionChange}/>
         <br/>
-      {necessary}  <TextField  floatingLabelText="email" name="email" type="email" value={this.state.email} onChange={this.handleChange}/>
+      {necessary}  <TextField  floatingLabelText="Email" name="email" type="email" value={this.state.email} onChange={this.handleChange}/>
 
         {emailErrors}
-      {necessary}  <TextField  floatingLabelText="password" name="password" type="password" value={this.state.password} onChange={this.handleChange}/>
+      {necessary}  <TextField  floatingLabelText="Passwort" name="password" type="password" value={this.state.password} onChange={this.handleChange}/>
         <br/>
         {passwordErrors}
-      {necessary}  <TextField  floatingLabelText="password confirm" name="password_confirmation" type="password" value={this.state.password_confirmation} onChange={this.handleChange}/>
+      {necessary}  <TextField  floatingLabelText="Passwort wiederholen" name="password_confirmation" type="password" value={this.state.password_confirmation} onChange={this.handleChange}/>
         <br/>
         {passwordConfirmationErrors}
         <br/>
-        <FlatButton onClick={this.registrate} disabled={this.buttonShouldBeDisabled()}>Create</FlatButton>
+        <FlatButton onClick={this.registrate} disabled={this.buttonShouldBeDisabled()}>Account erstellen</FlatButton>
         {loadingIndicator}
         <p className="necessary-explanation">{necessary} muss ausgefüllt sein </p>
       </form>
