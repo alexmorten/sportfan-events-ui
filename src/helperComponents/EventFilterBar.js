@@ -6,7 +6,7 @@ import ToggleForm from './ToggleForm';
 import HelperFuncs from '../services/HelperFuncs';
 import '../css/EventFilterBar.css';
 import RangeSelector from './RangeSelector';
-import Slider from './Slider';
+// import Slider from './Slider';
 import Toggle from './Toggle';
 import FlatButton from 'material-ui/FlatButton';
 import Select from 'react-select';
@@ -139,6 +139,7 @@ class EventFilterBar extends Component{
             <LocationFormHelper onLocationChange={this.onPositionChange}/>
           </div>
         )
+        // eslint-disable-next-line
         break;
       case "dist":
         return(
@@ -147,6 +148,7 @@ class EventFilterBar extends Component{
           <span>  km</span>
           </div>
         )
+        // eslint-disable-next-line
       break;
       case "query":
         return(
@@ -154,6 +156,7 @@ class EventFilterBar extends Component{
             <TextField name="query" floatingLabelText="Suchen" type="text" value={this.state.filter.query} onChange={this.onFilterChange} fullWidth={false} disableAutoFocus={false} style={{width:"auto"}}/>
           </div>
         )
+        // eslint-disable-next-line
       break;
       case "small":
         return(
@@ -162,6 +165,7 @@ class EventFilterBar extends Component{
             <ToggleForm name="exclude_future" toggle={this.state.filter.exclude_future} onClick={this.onFilterChange} text="nur vergangene Events"/>
           </div>
         )
+        // eslint-disable-next-line
       break;
       case "range":
         return(
@@ -169,6 +173,7 @@ class EventFilterBar extends Component{
             <RangeSelector onSubmit={this.onRangeChange}/>
           </div>
         )
+        // eslint-disable-next-line
       break;
       default:
         console.log("wrong use of getFilterFromOption func");
