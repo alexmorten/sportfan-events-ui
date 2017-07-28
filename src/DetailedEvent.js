@@ -47,7 +47,7 @@ class DetailedEvent extends Component{
             <div className="detailed-event-infor-bar-location">
               <AddressDisplay location={{lat:event.lat,lng:event.lng}}/>
 
-              <DistHelper dist={event.dist} className="detailed-event-small"/>
+              {/* <DistHelper dist={event.dist} className="detailed-event-small"/> */}
 
             </div>
           </div>
