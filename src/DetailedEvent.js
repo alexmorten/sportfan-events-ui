@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import Store from './services/Store';
-import AuthStore from './services/AuthStore';
-import IfAdmin from './helperComponents/IfAdmin';
 import GoogleMap from './helperComponents/GoogleMap';
 import Loading from './helperComponents/Loading';
 import Paper from 'material-ui/Paper';

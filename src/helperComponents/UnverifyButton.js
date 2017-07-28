@@ -1,4 +1,4 @@
-import React , {Component} from 'react';
+import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import AuthStore from '../services/AuthStore';
 import LinearProgress from 'material-ui/LinearProgress';
