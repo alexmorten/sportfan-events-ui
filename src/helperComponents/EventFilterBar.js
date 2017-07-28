@@ -8,6 +8,7 @@ import '../css/EventFilterBar.css';
 import RangeSelector from './RangeSelector';
 // import Slider from './Slider';
 import Toggle from './Toggle';
+import Invisible from './Invisible';
 import FlatButton from 'material-ui/FlatButton';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
@@ -17,7 +18,7 @@ class FilterSelector extends Component{
     //   this.props.onChange(vals)
     // }
   getOptions = ()=>{
-    console.log("getting options");
+
     var  options=[
         {value:"location",label:"Ort",fields:["lat","lng"]},
         {value:"dist",label:"Distanz",fields:["dist"],disabled:!this.isOptionSelected("location")},
@@ -29,22 +30,22 @@ class FilterSelector extends Component{
   }
   isOptionSelected = (value)=>{
     var selected = this.props.selected || [];
-    console.log(selected);
     var arr = selected.filter((item)=>{
       return item.value === value;
     });
-    console.log(arr);
     return arr.length >= 1;
   }
   render(){
     return(
-      <Select
-        name="form-field-name"
-        multi={true}
-        value={this.props.selected}
-        options={this.getOptions()}
-        onChange={this.props.onChange}
-      />
+      <div className="filter-selector-container">
+        <Select
+          name="form-field-name"
+          multi={true}
+          value={this.props.selected}
+          options={this.getOptions()}
+          onChange={this.props.onChange}
+        />
+      </div>
     )
   }
 }
@@ -77,7 +78,7 @@ class EventFilterBar extends Component{
     removedFilters.forEach((filter)=>{
       this.resetFilter(filter);
     });
-    console.log(selectedOptions);
+
     this.setState({selectedFilters:selectedOptions});
   }
   resetFilter = (filter)=>{
@@ -135,7 +136,7 @@ class EventFilterBar extends Component{
     switch (option.value) {
       case "location":
         return (
-          <div className="location-filter" >
+          <div className="location-filter" key="location-filter">
             <LocationFormHelper onLocationChange={this.onPositionChange}/>
           </div>
         )
@@ -143,7 +144,7 @@ class EventFilterBar extends Component{
         break;
       case "dist":
         return(
-          <div className="dist-filter" >
+          <div className="dist-filter" key="dist-filter">
             <TextField name="dist" floatingLabelText="Distanz" type="number" value={this.state.filter.dist} onChange={this.onFilterChange} fullWidth={false}  style={{width:"70%"}}/>
           <span>  km</span>
           </div>
@@ -152,7 +153,7 @@ class EventFilterBar extends Component{
       break;
       case "query":
         return(
-          <div className="query-filter" >
+          <div className="query-filter" key="query-filter">
             <TextField name="query" floatingLabelText="Suchen" type="text" value={this.state.filter.query} onChange={this.onFilterChange} fullWidth={false} disableAutoFocus={false} style={{width:"auto"}}/>
           </div>
         )
@@ -160,7 +161,7 @@ class EventFilterBar extends Component{
       break;
       case "small":
         return(
-          <div className="small-filters" >
+          <div className="small-filters" key="small-filters">
             <ToggleForm name="include_past" toggle={this.state.filter.include_past} onClick={this.onFilterChange} text="mit vergangenen Events"/>
             <ToggleForm name="exclude_future" toggle={this.state.filter.exclude_future} onClick={this.onFilterChange} text="nur vergangene Events"/>
           </div>
@@ -169,7 +170,7 @@ class EventFilterBar extends Component{
       break;
       case "range":
         return(
-          <div className="date-range-filter">
+          <div className="date-range-filter" key="date-range-filter">
             <RangeSelector onSubmit={this.onRangeChange}/>
           </div>
         )
@@ -185,14 +186,18 @@ class EventFilterBar extends Component{
       return this.getFilterFromOption(filter);
     });
     var items = [];
+    var tmp_id = 0;
     if(filterItems.length >= 1){
-      items.push(<VerticalDivider/>);
+      items.push(<VerticalDivider key={tmp_id}/>);
+      tmp_id++;
       items.push(filterItems[0]);
-      items.push(<VerticalDivider/>);
+      items.push(<VerticalDivider  key={tmp_id}/>);
+      tmp_id++;
     }
     for (var i = 1; i < filterItems.length; i++) {
       items.push(filterItems[i]);
-      items.push(<VerticalDivider/>);
+      items.push(<VerticalDivider  key={tmp_id}/>);
+      tmp_id++;
     }
     return items;
   }
@@ -202,15 +207,17 @@ class EventFilterBar extends Component{
       <div className="filter-bar-container">
 
         <FlatButton onClick={()=>{this.setState({open:!this.state.open})}}>Filter {this.state.open? "einklappen" : "ausklappen"}</FlatButton>
-         <Toggle toggle={this.state.open}>
+         <Invisible invisible={!this.state.open}>
           <div className="filter-bar">
             {this.constructFilters()}
       </div>
         <FlatButton onClick={()=>{this.setState({filterSettingsOpen:!this.state.filterSettingsOpen})}}>Filter einstellen</FlatButton>
 
-      </Toggle>
+      </Invisible>
         <Toggle toggle={this.state.filterSettingsOpen}>
+
           <FilterSelector selected={this.state.selectedFilters} onChange={this.onFilterSettingChange}/>
+
         </Toggle>
       </div>
     )

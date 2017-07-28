@@ -1,0 +1,31 @@
+.detailed-event{
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 10px;
+}
+.detailed-event-title{
+  font-size: 35px;
+  font-weight: 400;
+}
+.detailed-event-description{
+  white-space: pre; 
+}
+.detailed-event-infor-bar-date{
+  text-align: left;
+  float: left;
+}
+.detailed-event-small{
+  color:#696969;
+  font-size: 12px;
+  text-align: center;
+  /*width: 100%;*/
+  display: block;
+}
+.detailed-event-infor-bar-location{
+  float: right;
+  max-width: 250px;
+}
+.detailed-event-tag-bar{
+  float: none;
+  clear: both;
+}

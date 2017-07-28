@@ -12,7 +12,7 @@ class Events extends Component{
     filter:{}
   }
   getEvents = (filter=this.state.filter)=>{
-    console.log("getting events");
+    
       Store.query("events",filter,(events)=>{
           this.setState({events:events});
         },(failResponse)=>{

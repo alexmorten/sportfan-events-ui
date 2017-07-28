@@ -25,7 +25,8 @@ class GoogleMap extends Component {
     }
   }
   render(){
-  return(  <div className="map" ref={this.setMapRef} style={{width:'100%',height:'300px',maxWidth:"300px",margin:'auto'}}></div>)
+    var mapSidelength = this.props.size || 300;
+  return(  <div className="map" ref={this.setMapRef} style={{width:'100%',height:mapSidelength,maxWidth:mapSidelength,margin:'auto'}}></div>)
   }
 }
 export default GoogleMap;

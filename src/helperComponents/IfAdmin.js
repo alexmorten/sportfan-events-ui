@@ -5,7 +5,7 @@ class IfAdmin extends Component {
   render(){
     var user = this.props.user;
     var currentUser = AuthStore.getCurrentUserDetails();
-    if( (currentUser && currentUser.status === "admin") || (user && user.id === currentUser.id)){
+    if( (currentUser && currentUser.status === "admin") || (user && currentUser && user.id === currentUser.id)){
       return(
         <div>
           {this.props.children}

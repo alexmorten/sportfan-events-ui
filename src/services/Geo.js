@@ -10,7 +10,13 @@ function getLocation(cb,fail,disableCache) {
       }
         navigator.geolocation.getCurrentPosition((position)=>{
           if(!disableCache){
-            StorageAdaptor.cacheResult("local-geo",position.coords);
+            var coords = position.coords;
+            var obj = {
+              latitude:coords.latitude,
+              longitude:coords.longitude
+            };
+
+            StorageAdaptor.cacheResult("local-geo",obj);
           }
           cb(position.coords);
         },(error)=>{

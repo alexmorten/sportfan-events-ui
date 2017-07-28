@@ -7,6 +7,7 @@ import Events from './Events';
 import NewEvent from './NewEvent';
 import Users from './Users';
 import DetailedUser from './DetailedUser';
+import DetailedEvent from './DetailedEvent';
 
 class RouteController extends Component{
 render(){
@@ -21,6 +22,7 @@ render(){
           <Route path="/vereine" component={Users}></Route>
           {/* <Route path="/posts/:post_id" component={DetailedPost}></Route> */} */}
           <Route path="/new" component={NewEvent}></Route>
+          <Route path="/events/:event_id" component={DetailedEvent}></Route>
           <Route path="/" component={Events}></Route>
         </Switch>
         </App>

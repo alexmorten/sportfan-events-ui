@@ -6,11 +6,10 @@
   text-align: center;
 }
 .event-info-bar span{
-  color: lightgrey;
+  color: #bababa;
   margin: 5px;
   font-size: 12px;
 }
-
 .event-time{
   float: left;
 }
@@ -20,13 +19,14 @@
 .event-title{
   margin-top: 40px;
 }
+.event-description{
+  white-space: pre;
+}
 .event-references{
   float: left;
   width: 100%;
   text-align: left;
   font-size: 14px;
-
-
 }
 .event-references .link{
   cursor:pointer;
@@ -34,8 +34,4 @@
 }
 .event-references .link:hover{
   text-decoration: underline;
-}
-.event-tag-chip span{
-  line-height: 28px !important;
-  font-size: 12px !important;
 }

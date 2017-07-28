@@ -10,8 +10,6 @@ class RangeSelector extends Component{
 
 
   handleSelection = ({startDate,endDate})=>{
-    console.log(startDate);
-    console.log(endDate);
     this.setState({startDate,endDate});
     if(startDate && endDate){
       var newStartDate = startDate.toDate().getTime()/1000|0;

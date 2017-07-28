@@ -19,3 +19,7 @@
 /*.sub-group-item * {
   display: inline-block;
 }*/
+.groups-loading-container{
+  margin: 10px auto;
+  display: inline-block;
+}

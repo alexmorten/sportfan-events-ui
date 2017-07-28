@@ -38,7 +38,7 @@ class AddGroupHelper extends Component{
     this.setState({description:e.target.value});
   }
   submitButtonDisabled = ()=>{
-    return !(this.state.name.length>0 && this.state.description.length>0) ;
+    return !(this.state.name.length>0 ) ;
   }
   render(){
     var actions=[

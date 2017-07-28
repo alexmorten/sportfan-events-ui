@@ -1,0 +1,4 @@
+.invisible-container.invisible{
+  max-height: 0;
+  overflow: hidden;
+}

@@ -60,14 +60,14 @@ class NewEvent extends AuthComponent{
       lng = this.state.lng,
       group = this.state.selectedGroup,
       selectedTags = this.state.selectedTags;
-      if(title && description && date && lat && lng && group && selectedTags.length > 0){
+      if(title && description && date && lat && lng && selectedTags.length > 0){
         var newPost={
           title:title,
           description:description,
           date:date,
           lat:lat,
           lng:lng,
-          group_id:group.id
+          group_id:group ? group.id : null
         };
         var that = this;
         this.post("events",newPost,(event)=>{
@@ -76,13 +76,10 @@ class NewEvent extends AuthComponent{
 
           var sendTagPromises = newTags.map( (tag)=>{return AuthStore.promiseSend("tags",tag)});
           Promise.all(sendTagPromises).then(function(sendTags){
-            console.log(arguments);
-            console.log(sendTags);
             var existingTags = oldTags;
             for (var i = 0; i < sendTags.length; i++) {
                existingTags.push(sendTags[i]);
             }
-            console.log(existingTags);
             var sendLinkPromises = existingTags.map((tag)=>{return AuthStore.promiseSend("links",{tag_id:tag.id,event_id:event.id})});
             Promise.all(sendLinkPromises).then(function(){
               console.log(arguments);
@@ -102,9 +99,9 @@ class NewEvent extends AuthComponent{
       date=this.state.date,
       lat=this.state.lat,
       lng = this.state.lng,
-      group = this.state.selectedGroup,
+      //group = this.state.selectedGroup,
       selectedTags = this.state.selectedTags;
-    return (title && description && date && lat && lng && group && selectedTags.length >0)
+    return (title && description && date && lat && lng && selectedTags.length >0)
   }
   render(){
     var userDetails = AuthStore.getCurrentUserDetails();

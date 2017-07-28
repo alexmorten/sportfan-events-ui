@@ -5,7 +5,10 @@ import './css/DetailedUser.css';
 import Paper from 'material-ui/Paper';
 import ShowEventsHelper from './helperComponents/ShowEventsHelper';
 import Groups from './Groups';
-
+import IfAdmin from './helperComponents/IfAdmin';
+import VerifyButton from './helperComponents/VerifyButton';
+import UnverifyButton from './helperComponents/UnverifyButton';
+import MakeAdminButton from './helperComponents/MakeAdminButton';
 class DetailedUser extends Component{
   state={
     user:null,
@@ -32,12 +35,18 @@ render(){
     return (
       <div>
       <Paper className="detailed-user-container">
+        <IfAdmin>
+          <VerifyButton user={user} refresh={this.getUser} />
+          <UnverifyButton user={user} refresh={this.getUser} />
+          <MakeAdminButton user={user} refresh={this.getUser} />
+        </IfAdmin>
         <h4>{user.name}</h4>
         <p>{user.description}</p>
         <p>Website: <a href={"https://"+linkToWebsite}>{user.website}</a></p>
       </Paper>
 
         <ShowEventsHelper dataUrl={"users/"+user.id+"/events"} event_count={user.event_count}/>
+          <h4>Gruppen</h4>
         <Groups dataUrl={"users/"+user.id+"/groups"} user={user}/>
       </div>
     )

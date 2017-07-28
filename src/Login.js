@@ -42,7 +42,7 @@ class Login extends Component{
       this.setState({loading:true});
       AuthStore.authenticate(this.state.email,this.state.password,(responseBody)=>{
         this.setState({loading:false});
-        this.props.history.push("/");
+        this.props.history.push(`/vereine/${responseBody.data.id}`);
         this.props.history.goForward();
       },(failResponse)=>{
         console.log(failResponse);
@@ -62,7 +62,7 @@ class Login extends Component{
     var params = queryString.parse(window.location.search)
 
     if (params["token"] && params["uid"] && params["client_id"] && params["expiry"]) {
-      console.log(params);
+      
       var auth_details = {};
       auth_details["access-token"]=params["token"];
       auth_details["uid"]=params["uid"];
@@ -73,7 +73,7 @@ class Login extends Component{
       StorageAdaptor.setItem("authenticated","true");
       AuthStore.receive("me",(userDetails)=>{
         StorageAdaptor.setObject("current_user_data",userDetails);
-        this.props.history.push("/");
+        this.props.history.push(`/vereine/${userDetails.id}`);
         this.props.history.goForward();
       })
 
@@ -108,15 +108,15 @@ class Login extends Component{
     }
 
     return(<form className="login-form" style={style.container} >
-      <TextField  floatingLabelText="email" type="email" value={this.state.email} onChange={this.onEmailChange}/>
+      <TextField  floatingLabelText="Email" type="email" value={this.state.email} onChange={this.onEmailChange}/>
       <br/>
-      <TextField floatingLabelText="password" type="password" value={this.state.password} onChange={this.onPasswordChange}/>
+      <TextField floatingLabelText="Passwort" type="password" value={this.state.password} onChange={this.onPasswordChange}/>
       <br/>
       <FlatButton label="Login" disabled={this.shouldButtonBeDisabled()} onClick={this.handleSubmit}/>
       <br/>
       {errors}
       <br/>
-      <span className="register-message"> <Link to="/register">Don't have an account yet?</Link> </span>
+      <span className="register-message"> <Link to="/register">Ihr Verein hat noch keinen Account bei uns?</Link> </span>
       {loadingIndicator}
     </form>);
   }
