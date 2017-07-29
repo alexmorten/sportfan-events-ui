@@ -21,7 +21,7 @@ class UserList extends Component{
       this.setStateSafely({users:users});
     },(failResponse)=>{
       console.log(failResponse);
-    })
+    },true)
   }
   onFilterChange = (e)=>{
     e.preventDefault();
