@@ -4,7 +4,7 @@ import GoogleMap from './helperComponents/GoogleMap';
 import Loading from './helperComponents/Loading';
 import Paper from 'material-ui/Paper';
 import DateDifference from './helperComponents/DateDifference';
-import DistHelper from './helperComponents/DistHelper';
+
 import Tag from './helperComponents/Tag';
 import DateShower from './helperComponents/DateShower';
 import './css/DetailedEvent.css';

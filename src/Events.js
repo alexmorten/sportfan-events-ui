@@ -38,7 +38,7 @@ render(){
   return(
     <div>
       <IfVerified>
-        <Link to="new" >
+        <Link to="neu" >
           <RaisedButton primary={true} label="Event Hinzufügen" style={newButtonStyle}/>
         </Link>
       </IfVerified>

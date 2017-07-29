@@ -13,6 +13,7 @@ import Invisible from './Invisible';
 import FlatButton from 'material-ui/FlatButton';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+import QueryFilter from './QueryFilter';
 class FilterSelector extends Component{
 
     // onChange = (vals)=>{
@@ -154,7 +155,7 @@ class EventFilterBar extends Component{
       case "query":
         return(
           <div className="query-filter" key="query-filter">
-            <TextField name="query" floatingLabelText="Suchen" type="text" value={this.state.filter.query} onChange={this.onFilterChange} fullWidth={false} disableAutoFocus={false} style={{width:"auto"}}/>
+            <QueryFilter name="query" query={this.state.filter.query} onChange={this.onFilterChange}/>
           </div>
         )
         // eslint-disable-next-line

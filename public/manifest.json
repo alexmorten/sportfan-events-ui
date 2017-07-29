@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Sportfan Events",
+  "name": "Finde Sport-Events in deiner Nähe",
   "icons": [
     {
       "src": "favicon.ico",

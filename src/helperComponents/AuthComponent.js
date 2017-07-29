@@ -7,6 +7,10 @@ class AuthComponent extends Component{
     this.props.history.push("/login");
     this.props.history.goForward();
   }
+  transitionTo(path){
+    this.props.history.push(`/${path}`);
+    this.props.history.goForward();
+  }
   find(url,cb,fail){
 
     if(Store.receive(url,cb,fail)==="login"){
