@@ -1,4 +1,5 @@
-import React,{Component} from 'react';
+import React from 'react';
+import Component from './Component';
 import Store from '../services/Store';
 import Loading from './Loading';
 // import Divider from 'material-ui/Divider';
@@ -20,7 +21,7 @@ class Group extends Component{
     var group = this.props.group;
     return(
       <div className="groups-selector-group-container">
-        {group.direct_sub_group_count > 0 ? (<FontIcon className="material-icons group-selector-arrow" onClick={()=>{this.setState({open:!this.state.open})}}>
+        {group.direct_sub_group_count > 0 ? (<FontIcon className="material-icons group-selector-arrow" onClick={()=>{this.setStateSafely({open:!this.state.open})}}>
           {this.state.open ? "keyboard_arrow_up" : "keyboard_arrow_down"}</FontIcon>) : (<div></div>) }
 
         <div className={"group-selector-group"+ (this.isSelected() ? " selected" : "")} onClick={this.onClick}>
@@ -47,7 +48,7 @@ class Groups extends Component{
     var dataUrl=this.props.dataUrl;
     Store.receive(dataUrl,(groups)=>{
 
-      this.setState({subGroups:groups,loaded:true});
+      this.setStateSafely({subGroups:groups,loaded:true});
     })
   }
   componentDidMount(){

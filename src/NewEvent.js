@@ -24,29 +24,29 @@ class NewEvent extends AuthComponent{
     e.preventDefault();
     var obj={};
     obj[e.target.name] = e.target.value;
-    this.setState(obj);
+    this.setStateSafely(obj);
   }
   onLocationChange = (location)=>{
-    this.setState({lat:location.lat,lng:location.lng});
+    this.setStateSafely({lat:location.lat,lng:location.lng});
   }
   onDateChange=(_, date)=>{
     if(!this.state.date){
-      this.setState({date:date});
+      this.setStateSafely({date:date});
     }else{ // date and time already set
       var oldDate = this.state.date;
       date.setHours(oldDate.getHours());
       date.setMinutes(oldDate.getMinutes());
-      this.setState({date:date});
+      this.setStateSafely({date:date});
     }
   }
   onTimeChange=(_,time)=>{
     var date = this.state.date;
     date.setHours(time.getHours());
     date.setMinutes(time.getMinutes());
-    this.setState({date:date});
+    this.setStateSafely({date:date});
   }
   onGroupChange= (group)=>{
-    this.setState({selectedGroup:group});
+    this.setStateSafely({selectedGroup:group});
   }
   timePickerDisabled = ()=>{
     return !this.state.date;
@@ -112,7 +112,7 @@ class NewEvent extends AuthComponent{
         <TextField name="title" floatingLabelText="Titel" type="text" value={this.state.title} onChange={this.onChange} fullWidth={true}/>
         <TextField name="description" floatingLabelText="Beschreibung"
           multiLine={true} type="text" value={this.state.description} onChange={this.onChange} fullWidth={true}/>
-        <TagFormHelper onChange={(vals)=>{this.setState({selectedTags:vals})}} selected={this.state.selectedTags}/>
+        <TagFormHelper onChange={(vals)=>{this.setStateSafely({selectedTags:vals})}} selected={this.state.selectedTags}/>
         <h5>Zeitpunkt auswählen</h5>
 
         <DatePicker hintText="Datum" onChange={this.onDateChange} name="date" value={this.state.date}/>

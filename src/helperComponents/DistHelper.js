@@ -2,13 +2,22 @@ import React,{Component} from 'react';
 
 class DistHelper extends Component{
 render(){
-  var dist = Math.round(this.props.dist*100)/100;
-  if (typeof dist ==="number" && dist === 0) {
-    return(<span className={this.props.className}>hier</span>)
+  var dist = this.props.dist;
+
+  if (typeof dist === "number") {
+    var roundedDist = Math.round(this.props.dist*100)/100;
+    if(roundedDist === 0){
+      return(<span className={this.props.className}>hier</span>)
+    }else{
+      return (
+        <span className={this.props.className}>{ roundedDist +" km entfernt"}</span>
+      )
+    }
   }else{
-    return (
-      <span className={this.props.className}>{dist ? dist+" km entfernt" : ""}</span>
-    )
+    if (!dist) {
+      return ( <span className={this.props.className}></span>)
+    }
+
   }
 
 }

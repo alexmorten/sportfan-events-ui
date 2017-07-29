@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
+import Component from './Component';
 import Geo from '../services/Geo';
 import FlatButton from 'material-ui/FlatButton';
 import LinearProgress from 'material-ui/LinearProgress';
@@ -16,10 +17,10 @@ onClick = (e)=>{
   this.getPosition();
 }
 getPosition = ()=>{
-  this.setState({loading:true});
+  this.setStateSafely({loading:true});
   Geo.getLocation((pos)=>{
     this.props.onSubmit({lat:pos.latitude,lng:pos.longitude});
-    this.setState({finished:true,loading:false});
+    this.setStateSafely({finished:true,loading:false});
   },(error)=>{
     console.log(error);
   });
@@ -28,6 +29,9 @@ componentDidMount(){
   if(!this.props.disabledDirectLocate){
     Geo.ifGranted(this.getPosition);
   }
+}
+componentWillMount(){
+
 }
   render(){
     return(

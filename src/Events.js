@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Component from './helperComponents/Component';
 import './css/Events.css';
 import {Link} from 'react-router-dom';
 import Store from './services/Store';
@@ -12,20 +13,18 @@ class Events extends Component{
     filter:{}
   }
   getEvents = (filter=this.state.filter)=>{
-    
       Store.query("events",filter,(events)=>{
-          this.setState({events:events});
+          this.setStateSafely({events:events});
         },(failResponse)=>{
           console.log(failResponse);
-        },true)
-
+        },false);
   }
 
   componentDidMount(){
     this.getEvents();
   }
   onFilterChange = (filter)=>{
-    this.setState({filter:filter});
+    this.setStateSafely({filter:filter});
     this.getEvents(filter);
   }
 

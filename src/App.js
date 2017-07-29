@@ -10,6 +10,7 @@ class App extends Component {
     AuthStore.deauthenticate();
     this.setState();
     }
+    
   render() {
     var loginLink=(
         <li className="nav-item"><NavLink activeClassName="link-active" to="/login">Login</NavLink></li>

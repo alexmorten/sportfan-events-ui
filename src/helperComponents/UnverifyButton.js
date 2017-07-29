@@ -8,12 +8,12 @@ import VerifyButton from './VerifyButton';
 class UnverifyButton extends VerifyButton{
   onClick = ()=>{
     var user = this.props.user;
-      this.setState({loading:true,failed:false,success:true});
+      this.setStateSafely({loading:true,failed:false,success:true});
     AuthStore.update(`users/${user.id}`,{status:"normal"},()=>{
-      this.setState({loading:false,success:true});
+      this.setStateSafely({loading:false,success:true});
         this.refresh();
     },(failResponse)=>{
-      this.setState({loading:false,failed:true});
+      this.setStateSafely({loading:false,failed:true});
         this.refresh();
     })
   }

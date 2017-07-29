@@ -18,7 +18,7 @@ class Event extends Component {
     }
 
     var tagItems = event.tags.map((tag)=>{
-        return <Tag key={Tag.id} tag={tag}/>
+        return <Tag key={tag.id} tag={tag}/>
     });
     return(
       <Paper style={paperStyle}>

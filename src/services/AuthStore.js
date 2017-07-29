@@ -231,6 +231,17 @@ function setNewAuthDetails(headers){
 function getCurrentUserDetails(){
   return StorageAdaptor.getObject("current_user_data");
 }
+function updateCurrentUserDetails(){
+  if (!isAuthenticated()) {
+    return
+  }
+    var currentUserData = getCurrentUserDetails();
+    receive(`users/${currentUserData.id}`,(newDetails)=>{
+      StorageAdaptor.setObject("current_user_data",newDetails);
+    },(fail)=>{},true);
+
+
+}
 function isAuthenticated(){
 
   return StorageAdaptor.getItem("authenticated") === "true";
@@ -271,5 +282,19 @@ function constructQueryParams(params){
 
   return queryString;
 }
-const AuthStore = {authenticate,deauthenticate,receive,query,send,promiseSend,update,destroy,isAuthenticated,getCurrentUserDetails,constructQueryParams,registrate};
+const AuthStore = {
+  authenticate,
+  deauthenticate,
+  receive,
+  query,
+  send,
+  promiseSend,
+  update,
+  destroy,
+  isAuthenticated,
+  getCurrentUserDetails,
+  updateCurrentUserDetails,
+  constructQueryParams,
+  registrate
+  };
 export default AuthStore;

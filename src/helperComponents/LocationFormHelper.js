@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
+import Component from './Component';
 import '../css/LocationFormHelper.css';
 import FlatButton from 'material-ui/FlatButton';
 import GooglePlaceAutocomplete from 'material-ui-autocomplete-google-places';
@@ -15,7 +16,7 @@ class LocationFormHelper extends Component{
 
   setCoords = (lat,lng)=>{
     var location = {lat:lat,lng:lng};
-    this.setState({center:location});
+    this.setStateSafely({center:location});
     this.props.onLocationChange(location);
   }
   setLocation = (latLng)=>{
@@ -24,10 +25,10 @@ class LocationFormHelper extends Component{
   }
   goToLocation = (location) =>{
     this.setCoords(location.lat,location.lng);
-    //this.setState({mapOpen:true});
+    //this.setStateSafely({mapOpen:true});
   }
   toggleMap=()=>{
-    this.setState({mapOpen: !this.state.mapOpen});
+    this.setStateSafely({mapOpen: !this.state.mapOpen});
   }
   render(){
     return(

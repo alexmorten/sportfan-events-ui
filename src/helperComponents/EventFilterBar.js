@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
+import Component from './Component';
 import LocationFormHelper from './LocationFormHelper';
 import TextField from 'material-ui/TextField';
 import VerticalDivider from './VerticalDivider';
@@ -79,11 +80,11 @@ class EventFilterBar extends Component{
       this.resetFilter(filter);
     });
 
-    this.setState({selectedFilters:selectedOptions});
+    this.setStateSafely({selectedFilters:selectedOptions});
   }
   resetFilter = (filter)=>{
 
-    this.setState((prevState,prevProps)=>{
+    this.setStateSafely((prevState,prevProps)=>{
       var newFilter = Object.assign({},prevState.filter);
       filter.fields.forEach((key)=>{
         newFilter[key] = defaultFilter[key];
@@ -107,24 +108,23 @@ class EventFilterBar extends Component{
     var filterCopy = Object.assign({},this.state.filter);
     filterCopy["lat"] = pos.lat;
     filterCopy["lng"] = pos.lng
-    this.setState({filter:filterCopy});
-
+    this.setStateSafely({filter:filterCopy});
   }
   onFilterChange=(e)=>{
     e.preventDefault();
     var filterCopy = Object.assign({},this.state.filter);
     filterCopy[e.target.name] = e.target.value;
-    this.setState({filter:filterCopy});
+    this.setStateSafely({filter:filterCopy});
 
   }
   onRangeChange = (range)=>{
     var filterCopy = Object.assign({},this.state.filter);
     filterCopy["startDate"]=range.startDate;
     filterCopy["endDate"]=range.endDate;
-    this.setState({filter:filterCopy});
+    this.setStateSafely({filter:filterCopy});
   }
   componentDidMount(){
-    this.props.onFilterChange(this.filter(this.state.filter)); //bring standard filters up
+  //  this.props.onFilterChange(this.filter(this.state.filter)); //bring standard filters up
 
   }
   componentDidUpdate(prevProps, prevState){
@@ -206,12 +206,12 @@ class EventFilterBar extends Component{
     return(
       <div className="filter-bar-container">
 
-        <FlatButton onClick={()=>{this.setState({open:!this.state.open})}}>Filter {this.state.open? "einklappen" : "ausklappen"}</FlatButton>
+        <FlatButton onClick={()=>{this.setStateSafely({open:!this.state.open})}}>Filter {this.state.open? "einklappen" : "ausklappen"}</FlatButton>
          <Invisible invisible={!this.state.open}>
           <div className="filter-bar">
             {this.constructFilters()}
       </div>
-        <FlatButton onClick={()=>{this.setState({filterSettingsOpen:!this.state.filterSettingsOpen})}}>Filter einstellen</FlatButton>
+        <FlatButton onClick={()=>{this.setStateSafely({filterSettingsOpen:!this.state.filterSettingsOpen})}}>Filter einstellen</FlatButton>
 
       </Invisible>
         <Toggle toggle={this.state.filterSettingsOpen}>

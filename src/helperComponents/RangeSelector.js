@@ -1,7 +1,8 @@
 import { DateRangePicker} from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import '../css/RangeSelector.css';
-import React, {Component} from 'react';
+import React from 'react';
+import Component from './Component';
 class RangeSelector extends Component{
   state={
     startDate:null,
@@ -10,7 +11,7 @@ class RangeSelector extends Component{
 
 
   handleSelection = ({startDate,endDate})=>{
-    this.setState({startDate,endDate});
+    this.setStateSafely({startDate,endDate});
     if(startDate && endDate){
       var newStartDate = startDate.toDate().getTime()/1000|0;
       var newEndDate = new Date(endDate.toDate().getTime()+(24*60*60*1000)).getTime()/1000|0 ;
@@ -35,7 +36,7 @@ class RangeSelector extends Component{
               endDate={this.state.endDate}
               onDatesChange={this.handleSelection}
               focusedInput={this.state.focusedInput}
-              onFocusChange={focusedInput => this.setState({ focusedInput })}
+              onFocusChange={focusedInput => this.setStateSafely({ focusedInput })}
               isOutsideRange={() => false}
               orientation={window.innerHeight > window.innerWidth ? "vertical" : "horizontal"}
               showClearDates={true}

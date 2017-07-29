@@ -15,3 +15,7 @@ display: inline-block;
 .dist-filter{
   max-width: 100px;
 }
+.filter-selector-container{
+  max-width: 700px;
+  margin: auto;
+}

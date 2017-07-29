@@ -1,4 +1,4 @@
-import {Component} from 'react';
+import Component from './Component';
 import Store from '../services/Store';
 import AuthStore from '../services/AuthStore';
 class AuthComponent extends Component{

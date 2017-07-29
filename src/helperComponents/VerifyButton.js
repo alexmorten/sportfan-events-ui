@@ -1,4 +1,5 @@
-import React , {Component} from 'react';
+import React from 'react';
+import Component from './Component';
 import RaisedButton from 'material-ui/RaisedButton';
 import AuthStore from '../services/AuthStore';
 import LinearProgress from 'material-ui/LinearProgress';
@@ -11,12 +12,12 @@ class VerifyButton extends Component{
   }
   onClick = ()=>{
     var user = this.props.user;
-      this.setState({loading:true,failed:false,success:true});
+      this.setStateSafely({loading:true,failed:false,success:true});
     AuthStore.update(`users/${user.id}`,{status:"verified"},()=>{
-      this.setState({loading:false,success:true});
+      this.setStateSafely({loading:false,success:true});
       this.refresh();
     },(failResponse)=>{
-      this.setState({loading:false,failed:true});
+      this.setStateSafely({loading:false,failed:true});
       this.refresh();
     })
   }

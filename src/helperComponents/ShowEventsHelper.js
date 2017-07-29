@@ -1,4 +1,5 @@
-import React, {Component } from 'react';
+import React from 'react';
+import Component from './Component';
 import Store from '../services/Store';
 import Action from './Action';
 import '../css/ShowEventsHelper.css';
@@ -16,20 +17,20 @@ class ShowEventsHelper extends Component{
   getEvents = (filter=this.state.filter)=>{
     var url = this.props.dataUrl;
     Store.query(url,filter,(events)=>{
-      this.setState({events:events,loaded:true});
+      this.setStateSafely({events:events,loaded:true});
     },(failResponse)=>{
       console.log(failResponse);
     })
   }
   open = (e)=>{
-    this.setState({open:true});
+    this.setStateSafely({open:true});
     this.getEvents();
   }
   close = (e)=>{
-    this.setState({open:false});
+    this.setStateSafely({open:false});
   }
   onFilterChange = (filter)=>{
-    this.setState({filter:filter});
+    this.setStateSafely({filter:filter});
     this.getEvents(filter);
   }
   render(){
