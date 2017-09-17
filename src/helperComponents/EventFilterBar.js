@@ -64,7 +64,7 @@ const defaultFilter = {
 
 class EventFilterBar extends Component{
   state ={
-    open:false,
+    open:true,
     filterSettingsOpen:false,
     selectedFilters:[
         {value:"location",label:"Ort",fields:["lat","lng"]},

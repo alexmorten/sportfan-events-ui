@@ -115,7 +115,7 @@ class Registrate extends Component{
         <br/>
         <TextField  floatingLabelText="Website" name="website" type="url" value={this.state.website} onChange={this.handleChange}/>
         <br/>
-        <LocationFormHelper onLocationChange={this.onPositionChange}/>
+        <LocationFormHelper labelText="Sitz" onLocationChange={this.onPositionChange}/>
         <br/>
       {necessary}  <TextField  floatingLabelText="Email" name="email" type="email" value={this.state.email} onChange={this.handleChange}/>
 

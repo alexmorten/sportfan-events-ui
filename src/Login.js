@@ -62,7 +62,7 @@ class Login extends Component{
     var params = queryString.parse(window.location.search)
 
     if (params["token"] && params["uid"] && params["client_id"] && params["expiry"]) {
-      
+
       var auth_details = {};
       auth_details["access-token"]=params["token"];
       auth_details["uid"]=params["uid"];

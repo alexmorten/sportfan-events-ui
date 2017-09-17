@@ -38,25 +38,34 @@ class DetailedEvent extends Component{
       <div className="detailed-event-container">
 
         <Paper className="detailed-event">
-          <div className="detailed-event-info-bar">
-            <div className="detailed-event-infor-bar-date">
-              <DateShower date={event.date}/>
-              <br/>
-              <DateDifference date={event.date} className="detailed-event-small"/>
-            </div>
-            <div className="detailed-event-infor-bar-location">
-              <AddressDisplay location={{lat:event.lat,lng:event.lng}}/>
 
-              {/* <DistHelper dist={event.dist} className="detailed-event-small"/> */}
-
-            </div>
-          </div>
           <div className="detailed-event-tag-bar">
             {tagItems}
           </div>
-          <h2 className="detailed-event-title">{event.title}</h2>
-          <p className="detailed-event-description">{event.description}</p>
-          <GoogleMap center={{lat:event.lat,lng:event.lng}} size={400}/>
+          <div className="detailed-event-flex-container">
+            <div>
+              <h2 className="detailed-event-title">{event.title}</h2>
+              <p className="detailed-event-description">{event.description}</p>
+              {/* <div className="detailed-event-info-bar"> */}
+                <div className="">
+                  <h4>Zeit</h4>
+                  <DateShower date={event.date}/>
+                  <br/>
+                  <DateDifference date={event.date} className="detailed-event-small"/>
+                </div>
+                <div className="">
+                  <h4>Ort</h4>
+
+                  <AddressDisplay location={{lat:event.lat,lng:event.lng}}/>
+
+                  {/* <DistHelper dist={event.dist} className="detailed-event-small"/> */}
+
+                </div>
+              {/* </div> */}
+            </div>
+            <GoogleMap center={{lat:event.lat,lng:event.lng}} size={300}/>
+          </div>
+
         </Paper>
       </div>
     )

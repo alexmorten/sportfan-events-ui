@@ -16,17 +16,17 @@ render(){
     <Router >
       <Route path="/" >
         <App>
-        <Switch>
-          <Route path="/register" component={Registrate}></Route>
-          <Route path="/login" component={Login}></Route>
-          <Route path="/vereine/:user_id" component={DetailedUser}></Route>
-          <Route path="/vereine" component={Users}></Route>
-          {/* <Route path="/posts/:post_id" component={DetailedPost}></Route> */} */}
-          <Route path="/neu" component={NewEvent}></Route>
-          <Route path="/events/:event_id" component={DetailedEvent}></Route>
-          <Route path="/administration" component={Administration}></Route>
-          <Route path="/" component={Events}></Route>
-        </Switch>
+          <Switch>
+            <Route path="/register" component={Registrate}></Route>
+            <Route path="/login" component={Login}></Route>
+            <Route path="/vereine/:user_id" component={DetailedUser}></Route>
+            <Route path="/vereine" component={Users}></Route>
+            {/* <Route path="/posts/:post_id" component={DetailedPost}></Route> */} */}
+            <Route path="/neu" component={NewEvent}></Route>
+            <Route path="/events/:event_id" component={DetailedEvent}></Route>
+            <Route path="/administration" component={Administration}></Route>
+            <Route path="/" component={Events}></Route>
+          </Switch>
         </App>
       </Route>
     </Router>

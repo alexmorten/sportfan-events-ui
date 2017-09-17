@@ -13,11 +13,11 @@ class App extends Component {
 
   render() {
     var loginLink=(
-        <li className="nav-item"><NavLink activeClassName="link-active" to="/login">Login</NavLink></li>
+        <li className="nav-item login-link"><NavLink activeClassName="link-active" to="/login">Login</NavLink></li>
     );
     if(AuthStore.isAuthenticated()){
       loginLink=(
-        <li className="nav-item"><a onClick={this.handleLogout}>Logout</a></li>
+        <li className="nav-item login-link"><a onClick={this.handleLogout}>Logout</a></li>
       )
     }
     return (
@@ -41,6 +41,9 @@ class App extends Component {
         </div>
         <div className="app-body">
             {this.props.children}
+        </div>
+        <div className="app-footer">
+          
         </div>
       </div>
       </MuiThemeProvider>

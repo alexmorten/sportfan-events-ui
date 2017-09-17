@@ -58,7 +58,7 @@ class Groups extends Component{
       this.setState({subGroups:groups,loaded:true});
     },(failResponse)=>{
       console.log(failResponse);
-    },true);
+    },false);
   }
   addSubGroup = (group)=>{
     var dataUrl = this.props.dataUrl;

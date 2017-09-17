@@ -8,7 +8,7 @@
   font-weight: 400;
 }
 .detailed-event-description{
-  white-space: pre; 
+  white-space: pre;
 }
 .detailed-event-infor-bar-date{
   text-align: left;
@@ -28,4 +28,13 @@
 .detailed-event-tag-bar{
   float: none;
   clear: both;
+}
+.detailed-event-flex-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+.detailed-event-flex-container *{
+  flex-grow: 1;  
 }

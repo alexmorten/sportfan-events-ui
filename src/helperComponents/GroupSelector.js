@@ -74,6 +74,7 @@ class GroupSelector extends Component{
   render(){
     return(
       <Paper className="group-selector-root">
+        
         <Groups dataUrl={this.props.dataUrl} onClick={this.props.onSelect} selected={this.props.selected}/>
       </Paper>
     );

@@ -27,17 +27,19 @@ class Event extends Component {
           <DateDifference date={event.date} className="event-time"/>
           <DistHelper dist={event.dist} className="event-dist"/>
         </div>
-        <div className="event-tag-bar">
-          {tagItems}
-        </div>
-        <div className="event-references">
-          <GroupHelper group={event.group}/>
-          <UserHelper user={event.user} />
-        </div>
+
         <Link to={`/events/${event.id}`}>
           <h4 className="event-title">{event.title}</h4>
           <p className="event-description">{event.description}</p>
         </Link>
+        <div className="event-references">
+          <GroupHelper group={event.group}/>
+          <UserHelper user={event.user} />
+        </div>
+        <div className="event-tag-bar">
+          {tagItems}
+        </div>
+
       </Paper>
     );
   }

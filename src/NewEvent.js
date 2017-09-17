@@ -3,12 +3,15 @@ import AuthComponent from './helperComponents/AuthComponent';
 import AuthStore from './services/AuthStore';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
+
 import DatePicker from 'material-ui/DatePicker';
 import TimePicker from 'material-ui/TimePicker';
 import GroupSelector from './helperComponents/GroupSelector';
 import './css/NewEvent.css';
 import LocationFormHelper from './helperComponents/LocationFormHelper';
 import TagFormHelper from './helperComponents/TagFormHelper';
+import Paper from 'material-ui/Paper';
 class NewEvent extends AuthComponent{
   state={
     title:"",
@@ -106,7 +109,7 @@ class NewEvent extends AuthComponent{
   render(){
     var userDetails = AuthStore.getCurrentUserDetails();
     return(
-      <div>
+      <Paper style={{display:'inline-block',width:'100%',maxWidth:"700px"}}>
         <h4>Neues Event erstellen</h4>
         <form className="new-event-form" onSubmit={this.onSubmit}>
         <TextField name="title" floatingLabelText="Titel" type="text" value={this.state.title} onChange={this.onChange} fullWidth={true}/>
@@ -124,9 +127,10 @@ class NewEvent extends AuthComponent{
         <h5>Gruppe auswählen</h5>
 
         <GroupSelector dataUrl={"users/"+userDetails.id+"/groups"} onSelect={this.onGroupChange} selected={this.state.selectedGroup}/>
-        <FlatButton label="Erstellen" onClick={this.onSubmit} type="submit" disabled={!this.dataValid()}/>
+        <br/>
+        <RaisedButton primary={true} className="new-event-create-button" label="Erstellen" onClick={this.onSubmit} type="submit" disabled={!this.dataValid()}/>
         </form>
-      </div>
+      </Paper>
     );
   }
 }

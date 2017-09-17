@@ -37,7 +37,7 @@ class LocationFormHelper extends Component{
         {/* <TextField name="address" floatingLabelText="Addresse" type="text" value={this.state.address} onChange={this.onAddressChange} fullWidth={true}/> */}
         <div className="">
         <GooglePlaceAutocomplete
-          floatingLabelText="Addresse"
+          floatingLabelText={this.props.labelText ?  this.props.labelText: "Ort"}
           // value="5"
         	// Function to return lat and lng
           style={{width:"270px"}}
