@@ -26,13 +26,10 @@ left: 0;
   text-align: left;
   display: block;
   z-index: 10;
+  min-height: 40px;
+  box-shadow:  0px 4px 10px -3px #05002d;
 }
-.app-header-blur{
-  filter: blur(10px);
-  height: 10px;
-  background-color: #222;
 
-}
 .app-header-container{
   position: fixed;
   top: 0;

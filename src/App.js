@@ -7,6 +7,7 @@ import AuthStore from './services/AuthStore';
 import IfAdmin from './helperComponents/IfAdmin';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
+import IfVerified from './helperComponents/IfVerified';
 class App extends Component {
   state={
     openDrawer:false
@@ -30,7 +31,7 @@ class App extends Component {
     );
     if(AuthStore.isAuthenticated()){
       loginLink=(
-        <li className="nav-item login-link"><a onClick={this.handleLogout}>Logout</a></li>
+        <span className="nav-item login-link"><a onClick={this.handleLogout}>Logout</a></span>
       )
     }
     var menuItemStyle={
@@ -41,6 +42,8 @@ class App extends Component {
       // lineHeight:"15px",
       // minHeight:"30px"
     }
+    var userDetails=AuthStore.getCurrentUserDetails() || {};
+    var userID = userDetails.id;
     return (
       <MuiThemeProvider>
 
@@ -49,14 +52,8 @@ class App extends Component {
           <div className="app-header">
             <div className="app-header-logo-container" onClick={this.handleToggleDrawer}><img src={logo} className="App-logo" alt="logo" /></div>
 
-            <ul className="navbar">
-              <li className="nav-item"><NavLink exact={true} activeClassName="link-active" to="/">Events</NavLink></li>
-              
-              <IfAdmin style={{display:'inline-block'}}>
-                <li className="nav-item"><NavLink exact={true} activeClassName="link-active" to="/administration">Administration</NavLink></li>
-              </IfAdmin>
+
               {loginLink}
-            </ul>
           </div>
 
         </div>
@@ -81,15 +78,20 @@ class App extends Component {
           onRequestChange={(open) => this.setState({openDrawer:open})}>
 
 
-          <MenuItem onClick={this.handleToggleDrawer} style={menuItemStyle} >Prog. Languages</MenuItem>
-          <MenuItem onClick={this.handleToggleDrawer} style={menuItemStyle} >Databases</MenuItem>
-          <MenuItem onClick={this.handleToggleDrawer} style={menuItemStyle} >Tools & OS</MenuItem>
-          <MenuItem onClick={this.handleToggleDrawer} style={menuItemStyle} >DevOps</MenuItem>
-          <MenuItem onClick={this.handleToggleDrawer} style={menuItemStyle} >Math & Algorithms</MenuItem>
-          <MenuItem onClick={this.handleToggleDrawer} style={menuItemStyle} >Computer Architecture</MenuItem>
-          <MenuItem onClick={this.handleToggleDrawer} style={menuItemStyle} >Planning & QA</MenuItem>
-          <MenuItem onClick={this.handleToggleDrawer} style={menuItemStyle} >Collaboration</MenuItem>
-          <MenuItem onClick={this.handleToggleDrawer} style={menuItemStyle} >Did I forget something?</MenuItem>
+          <MenuItem onClick={this.handleToggleDrawer} style={menuItemStyle} >
+            <NavLink exact={true} activeClassName="link-active" to="/">Events</NavLink>
+          </MenuItem>
+          <MenuItem onClick={this.handleToggleDrawer} style={menuItemStyle} >
+            <IfVerified>
+              <NavLink exact={true} activeClassName="link-active" to={`/vereine/${userID}`}>Mein Verein</NavLink>
+            </IfVerified>
+          </MenuItem>
+          <MenuItem onClick={this.handleToggleDrawer} style={menuItemStyle} >
+            <IfAdmin >
+              <NavLink exact={true} activeClassName="link-active" to="/administration">Administration</NavLink>
+            </IfAdmin>
+          </MenuItem>
+
 
         </Drawer>
       </div>

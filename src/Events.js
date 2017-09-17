@@ -39,13 +39,15 @@ render(){
   return(
     <div>
       <Subheader>
-        <Right>
+
           <IfVerified>
-            <Link to="neu" >
-              <RaisedButton primary={true} label="Event Hinzufügen"/>
-            </Link>
+            <Right>
+              <Link to="neu" >
+                <RaisedButton primary={true} label="Event Hinzufügen"/>
+              </Link>
+            </Right>
           </IfVerified>
-        </Right>
+
       </Subheader>
 
       <EventFilterBar onFilterChange={this.onFilterChange}/>
