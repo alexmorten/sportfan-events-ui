@@ -36,7 +36,7 @@ class ShowEventsHelper extends Component{
   render(){
     var loadingIndicator = (<div></div>);
     if(!this.state.loaded){
-      loadingIndicator= (<Loading/>);
+      loadingIndicator= (<Loading type="static"/>);
     }
     if(!this.state.open){
       if(this.props.event_count > 0){

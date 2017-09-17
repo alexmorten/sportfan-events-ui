@@ -5,7 +5,6 @@ import App from './App';
 import Register from './Register';
 import Events from './Events';
 import NewEvent from './NewEvent';
-import Users from './Users';
 import DetailedUser from './DetailedUser';
 import DetailedEvent from './DetailedEvent';
 import Administration from './Administration';
@@ -20,8 +19,8 @@ render(){
             <Route path="/register" component={Register}></Route>
             <Route path="/login" component={Login}></Route>
             <Route path="/vereine/:user_id" component={DetailedUser}></Route>
-            <Route path="/vereine" component={Users}></Route>
-            {/* <Route path="/posts/:post_id" component={DetailedPost}></Route> */} */}
+            {/* <Route path="/vereine" component={Users}></Route> */}
+          
             <Route path="/neu" component={NewEvent}></Route>
             <Route path="/events/:event_id" component={DetailedEvent}></Route>
             <Route path="/administration" component={Administration}></Route>

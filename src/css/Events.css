@@ -5,3 +5,7 @@
 .events-events{
   margin-top: 20px;
 }
+
+.event-container:hover{
+  background-color: #e0ebef  !important;
+}

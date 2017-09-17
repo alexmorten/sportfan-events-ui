@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
 import Store from './services/Store';
-import RefreshIndicator from 'material-ui/RefreshIndicator';
 import './css/DetailedUser.css';
 import Paper from 'material-ui/Paper';
 import ShowEventsHelper from './helperComponents/ShowEventsHelper';
@@ -41,7 +40,7 @@ render(){
       <Paper className="detailed-user-container">
         <Subheader>
           <Left>
-            <BackIcon text="Vereine" to="/vereine"/>
+            <BackIcon text="Events" to="/"/>
           </Left>
         </Subheader>
         <IfAdmin>
@@ -68,7 +67,7 @@ render(){
             <BackIcon text="Events" to="/"/>
           </Left>
         </Subheader>
-        <Loading/>
+        <Loading type="fixed"/>
       </div>);
   }
 }

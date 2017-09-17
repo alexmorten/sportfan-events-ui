@@ -8,7 +8,6 @@ import Event from './Event';
 import RaisedButton from 'material-ui/RaisedButton';
 import EventFilterBar from './helperComponents/EventFilterBar';
 import Subheader from './helperComponents/Subheader';
-import Left from './helperComponents/Left';
 import Right from './helperComponents/Right';
 
 class Events extends Component{

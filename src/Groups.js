@@ -84,7 +84,7 @@ class Groups extends Component{
     if(!this.state.loaded){
       return(
         <div className="groups-loading-container">
-          <Loading />
+          <Loading type="static"/>
         </div>
       )
     }

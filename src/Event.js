@@ -21,25 +21,25 @@ class Event extends Component {
         return <Tag key={tag.id} tag={tag}/>
     });
     return(
-      <Paper style={paperStyle}>
-
-        <div className="event-info-bar">
-          <DateDifference date={event.date} className="event-time"/>
-          <DistHelper dist={event.dist} className="event-dist"/>
-        </div>
-
+      <Paper style={paperStyle} className="event-container">
         <Link to={`/events/${event.id}`}>
-          <h4 className="event-title">{event.title}</h4>
-          <p className="event-description">{event.description}</p>
-        </Link>
-        <div className="event-references">
-          <GroupHelper group={event.group}/>
-          <UserHelper user={event.user} />
-        </div>
-        <div className="event-tag-bar">
-          {tagItems}
-        </div>
+          <div className="event-info-bar">
+            <DateDifference date={event.date} className="event-time"/>
+            <DistHelper dist={event.dist} className="event-dist"/>
+          </div>
 
+
+            <h4 className="event-title">{event.title}</h4>
+            <p className="event-description">{event.description}</p>
+
+          <div className="event-references">
+            <GroupHelper group={event.group}/>
+            <UserHelper user={event.user} />
+          </div>
+          <div className="event-tag-bar">
+            {tagItems}
+          </div>
+        </Link>
       </Paper>
     );
   }

@@ -4,7 +4,6 @@ import Geo from '../services/Geo';
 import RaisedButton from 'material-ui/RaisedButton';
 import LinearProgress from 'material-ui/LinearProgress';
 import Toggle from './Toggle';
-import FontIcon from 'material-ui/FontIcon';
 import '../css/GetCurrentPositionHelper.css';
 class GetCurrentPositionHelper extends Component{
 state={
@@ -36,12 +35,8 @@ componentWillMount(){
   render(){
     var buttonText = "Mich orten!";
     var finished = this.state.finished;
-    var buttonStyle={};
     if(finished){
       buttonText = "geortet";
-      buttonStyle={
-        backgroundColor:"green"
-      };
     }
 
     return(
