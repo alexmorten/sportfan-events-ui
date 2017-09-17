@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './css/App.css';
-import {NavLink} from 'react-router-dom';
+import {NavLink,withRouter} from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AuthStore from './services/AuthStore';
 import IfAdmin from './helperComponents/IfAdmin';
+
 class App extends Component {
   handleLogout = ()=>{
     AuthStore.deauthenticate();
+    this.props.history.push("/");
+    this.props.history.goForward();
+
     this.forceUpdate();
     }
 
@@ -37,18 +41,19 @@ class App extends Component {
               {loginLink}
             </ul>
           </div>
-          <div className="app-header-blur"></div>
+
         </div>
         <div className="app-body">
             {this.props.children}
         </div>
         <div className="app-footer">
-          
+
         </div>
+
       </div>
       </MuiThemeProvider>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

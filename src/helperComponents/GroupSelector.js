@@ -7,6 +7,16 @@ import Paper from 'material-ui/Paper';
 import '../css/GroupSelector.css';
 import Slider from './Slider';
 import FontIcon from 'material-ui/FontIcon';
+
+class NoGroupMessage extends Component{
+  render(){
+    return(
+      <div>
+        Sie haben noch keine Gruppen erstellt
+      </div>
+    )
+  }
+}
 class Group extends Component{
   state={
     open:false
@@ -62,6 +72,9 @@ class Groups extends Component{
     var groupItems=this.state.subGroups.map((group)=>{
       return <Group key={group.id} group={group} selected={this.props.selected} onClick={this.props.onClick}/>
     });
+    if (groupItems.length === 0) {
+      return <NoGroupMessage/>
+    }
     return (
       <div>
       {groupItems}
@@ -74,7 +87,7 @@ class GroupSelector extends Component{
   render(){
     return(
       <Paper className="group-selector-root">
-        
+
         <Groups dataUrl={this.props.dataUrl} onClick={this.props.onSelect} selected={this.props.selected}/>
       </Paper>
     );

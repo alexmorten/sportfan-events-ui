@@ -9,13 +9,11 @@ if(process.env.NODE_ENV === "development"){
 const AUTH_URL = API_URL+"auth/";
 
 
-function receive(url,cb,fail,disableCache){
+function receive(url,cb,fail){
   if(!isAuthenticated()){
     return "login"; //meaning a need to transition to Login
   }
-  if(!disableCache){
-    StorageAdaptor.getResultFromCache(url,cb);
-  }
+
   var receiveHeaders = {
     accept: 'application/json',
   };
@@ -28,22 +26,18 @@ function receive(url,cb,fail,disableCache){
   .then(parseJSON)
   .then((answer)=>{
     if(!answer.error){
-      if(!disableCache){
-      StorageAdaptor.cacheResult(url,answer);
-      }
+
       cb(answer);
     }else if (fail) {
       fail(answer);
     }
   });
 }
-function query(url,paramsObj,cb,fail,disableCache){
+function query(url,paramsObj,cb,fail){
   if(!isAuthenticated()){
     return "login"; //meaning a need to transition to Login
   }
-  if(!disableCache){
-    StorageAdaptor.getResultFromCache(url,cb);
-  }
+
   var headers = {
     accept: 'application/json',
   };
@@ -54,9 +48,7 @@ function query(url,paramsObj,cb,fail,disableCache){
     .then(parseJSON)
     .then((answer)=>{
       if(!answer.error){
-        if(!disableCache){
-        StorageAdaptor.cacheResult(url,answer);
-        }
+      
         cb(answer);
       }else if (fail) {
         fail(answer);

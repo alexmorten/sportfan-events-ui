@@ -2,7 +2,6 @@ import React from 'react';
 import AuthComponent from './helperComponents/AuthComponent';
 import AuthStore from './services/AuthStore';
 import TextField from 'material-ui/TextField';
-import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import DatePicker from 'material-ui/DatePicker';

@@ -2,7 +2,7 @@
   text-align: center;
 }
 body{
-  background-color: #f9f9f9;
+  background-color: #d8d8d8;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -25,7 +25,7 @@ left: 0;
   color: white;
   text-align: left;
   display: block;
-
+  z-index: 10;
 }
 .app-header-blur{
   filter: blur(10px);
@@ -84,9 +84,9 @@ content : "";
   font-size: large;
 }
 .app-body{
-  margin-top: 90px;
+  margin-top: 120px;
   min-height: 80vh;
-  
+
 }
 .app-logo {
   animation: App-logo-spin infinite 20s linear;

@@ -44,10 +44,11 @@ render(){
         <p>{user.description}</p>
         <p>Website: <a href={"https://"+linkToWebsite}>{user.website}</a></p>
       </Paper>
-
+      <Paper className="detailed-user-container">
         <ShowEventsHelper dataUrl={"users/"+user.id+"/events"} event_count={user.event_count}/>
           <h4>Gruppen</h4>
         <Groups dataUrl={"users/"+user.id+"/groups"} user={user}/>
+        </Paper>
       </div>
     )
   }else{

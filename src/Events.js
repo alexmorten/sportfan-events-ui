@@ -7,6 +7,10 @@ import IfVerified from './helperComponents/IfVerified';
 import Event from './Event';
 import RaisedButton from 'material-ui/RaisedButton';
 import EventFilterBar from './helperComponents/EventFilterBar';
+import Subheader from './helperComponents/Subheader';
+import Left from './helperComponents/Left';
+import Right from './helperComponents/Right';
+
 class Events extends Component{
   state={
     events:[],
@@ -33,15 +37,20 @@ render(){
     return ( <Event key={event.id} event={event}/>);
   });
   var newButtonStyle={
-    margin:'20px'
+    margin:'5px'
   }
   return(
     <div>
-      <IfVerified>
-        <Link to="neu" >
-          <RaisedButton primary={true} label="Event Hinzufügen" style={newButtonStyle}/>
-        </Link>
-      </IfVerified>
+      <Subheader>
+        <Right>
+          <IfVerified>
+            <Link to="neu" >
+              <RaisedButton primary={true} label="Event Hinzufügen" style={newButtonStyle}/>
+            </Link>
+          </IfVerified>
+        </Right>
+      </Subheader>
+
       <EventFilterBar onFilterChange={this.onFilterChange}/>
       <div className="events-events">
       {eventItems}

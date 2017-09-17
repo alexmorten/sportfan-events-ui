@@ -41,8 +41,8 @@ class TagFormHelper extends Component {
           placeholder="Sportart(-en)..."
           searchPromptText="Tippen zum Suchen"
           loadingPlaceholder="Laden..."
-          promptTextCreator={(label)=>{return  `"${label}" hinzufügen`}}
-          //  promptTextCreator={(label)=>{return label}}
+          //promptTextCreator={(label)=>{return  `"${label}" hinzufügen`}}
+            promptTextCreator={(label)=>{return label}}
           ignoreCase={false}
           autofocus={true}
           filterOption={() => true}

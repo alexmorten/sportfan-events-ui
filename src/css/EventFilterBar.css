@@ -1,6 +1,6 @@
 .filter-bar{
   width: 100%;
-  background-color: rgba(106,188,250,.2);
+
   display:flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -8,14 +8,35 @@
 }
 .location-filter{
 display: inline-block;
+max-width: 400px;
 }
 .query-filter{
-
+max-width: 200px;
 }
 .dist-filter{
-  max-width: 100px;
+max-width: 200px;
+}
+.date-range-filter{
+max-width: 300px;
 }
 .filter-selector-container{
   max-width: 700px;
   margin: auto;
+}
+.filter-item{
+  border: 1px solid lightgrey;
+  padding: 5px;
+  padding-top: 20px;
+  margin: 0;
+  margin-left: -1px;
+  margin-top: -1px;
+  flex-grow: 1;
+  position: relative;
+}
+.filter-description{
+  position: absolute;
+  top: -15px;
+  left: 5px;
+  color:grey;
+  font-weight: 200;
 }
