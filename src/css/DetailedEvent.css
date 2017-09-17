@@ -4,8 +4,7 @@
   padding: 10px;
 }
 .detailed-event-title{
-  font-size: 35px;
-  font-weight: 400;
+
 }
 .detailed-event-description{
   white-space: pre;
@@ -36,5 +35,5 @@
   width: 100%;
 }
 .detailed-event-flex-container *{
-  flex-grow: 1;  
+  flex-grow: 1;
 }

@@ -36,16 +36,14 @@ render(){
   var eventItems = this.state.events.map((event)=>{
     return ( <Event key={event.id} event={event}/>);
   });
-  var newButtonStyle={
-    margin:'5px'
-  }
+
   return(
     <div>
       <Subheader>
         <Right>
           <IfVerified>
             <Link to="neu" >
-              <RaisedButton primary={true} label="Event Hinzufügen" style={newButtonStyle}/>
+              <RaisedButton primary={true} label="Event Hinzufügen"/>
             </Link>
           </IfVerified>
         </Right>

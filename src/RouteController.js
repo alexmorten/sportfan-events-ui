@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
 import Login from './Login';
 import App from './App';
-import Registrate from './Registrate';
+import Register from './Register';
 import Events from './Events';
 import NewEvent from './NewEvent';
 import Users from './Users';
@@ -17,7 +17,7 @@ render(){
       <Route path="/" >
         <App>
           <Switch>
-            <Route path="/register" component={Registrate}></Route>
+            <Route path="/register" component={Register}></Route>
             <Route path="/login" component={Login}></Route>
             <Route path="/vereine/:user_id" component={DetailedUser}></Route>
             <Route path="/vereine" component={Users}></Route>

@@ -4,11 +4,15 @@ import GoogleMap from './helperComponents/GoogleMap';
 import Loading from './helperComponents/Loading';
 import Paper from 'material-ui/Paper';
 import DateDifference from './helperComponents/DateDifference';
-
+import GroupHelper from './helperComponents/GroupHelper';
+import UserHelper from './helperComponents/UserHelper';
 import Tag from './helperComponents/Tag';
 import DateShower from './helperComponents/DateShower';
 import './css/DetailedEvent.css';
 import AddressDisplay from './helperComponents/AddressDisplay';
+import Subheader from './helperComponents/Subheader';
+import BackIcon from './helperComponents/BackIcon';
+import Left from './helperComponents/Left';
 class DetailedEvent extends Component{
   state={
     event:null,
@@ -28,7 +32,15 @@ class DetailedEvent extends Component{
   render(){
 
     if(!this.state.loaded){
-      return(<Loading/>)
+      return(
+        <div>
+          <Subheader>
+            <Left>
+              <BackIcon text="Events" to="/"/>
+            </Left>
+          </Subheader>
+          <Loading/>
+        </div>)
     }
     var event = this.state.event;
     var tagItems = event.tags.map((tag)=>{
@@ -36,25 +48,32 @@ class DetailedEvent extends Component{
     });
     return(
       <div className="detailed-event-container">
-
+        <Subheader>
+          <Left>
+            <BackIcon text="Events" to="/"/>
+          </Left>
+        </Subheader>
         <Paper className="detailed-event">
-
+          <div className="event-references">
+            <GroupHelper group={event.group}/>
+            <UserHelper user={event.user} />
+          </div>
           <div className="detailed-event-tag-bar">
             {tagItems}
           </div>
           <div className="detailed-event-flex-container">
             <div>
-              <h2 className="detailed-event-title">{event.title}</h2>
+              <h1 className="detailed-event-title nice-heading">{event.title}</h1>
               <p className="detailed-event-description">{event.description}</p>
               {/* <div className="detailed-event-info-bar"> */}
                 <div className="">
-                  <h4>Zeit</h4>
+                  <h2 className="nice-heading">Zeit</h2>
                   <DateShower date={event.date}/>
                   <br/>
                   <DateDifference date={event.date} className="detailed-event-small"/>
                 </div>
                 <div className="">
-                  <h4>Ort</h4>
+                  <h2 className="nice-heading">Ort</h2>
 
                   <AddressDisplay location={{lat:event.lat,lng:event.lng}}/>
 

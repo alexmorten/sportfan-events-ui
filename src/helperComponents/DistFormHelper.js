@@ -16,11 +16,11 @@ class DistFormHelper extends React.Component{
   render(){
      return(
        <SelectField
-         
+
          value={this.props.value}
          onChange={this.handleChange}
          style={{width:undefined,textAlign:"center"}}
-        //  autoWidth={true}
+         autoWidth={true}
        >
          <MenuItem value={5} primaryText="5km" />
          <MenuItem value={10} primaryText="10km" />

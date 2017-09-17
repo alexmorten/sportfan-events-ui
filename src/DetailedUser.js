@@ -9,6 +9,10 @@ import IfAdmin from './helperComponents/IfAdmin';
 import VerifyButton from './helperComponents/VerifyButton';
 import UnverifyButton from './helperComponents/UnverifyButton';
 import MakeAdminButton from './helperComponents/MakeAdminButton';
+import Subheader from './helperComponents/Subheader';
+import BackIcon from './helperComponents/BackIcon';
+import Left from './helperComponents/Left';
+import Loading from './helperComponents/Loading';
 class DetailedUser extends Component{
   state={
     user:null,
@@ -35,6 +39,11 @@ render(){
     return (
       <div>
       <Paper className="detailed-user-container">
+        <Subheader>
+          <Left>
+            <BackIcon text="Vereine" to="/vereine"/>
+          </Left>
+        </Subheader>
         <IfAdmin>
           <VerifyButton user={user} refresh={this.getUser} />
           <UnverifyButton user={user} refresh={this.getUser} />
@@ -54,7 +63,12 @@ render(){
   }else{
     return (
       <div className="detailed-user-loading-container">
-        <RefreshIndicator status="loading" size={40} top={0} left={0} style={{position:'absolute'}}/>
+        <Subheader>
+          <Left>
+            <BackIcon text="Events" to="/"/>
+          </Left>
+        </Subheader>
+        <Loading/>
       </div>);
   }
 }

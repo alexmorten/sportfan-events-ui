@@ -1,13 +1,13 @@
 import React , {Component} from 'react';
 import AuthStore from './services/AuthStore';
 import TextField from 'material-ui/TextField';
-import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 import {Link} from 'react-router-dom';
 import queryString from 'query-string';
 import StorageAdaptor from './services/StorageAdaptor';
 import './css/Login.css';
-
+import Paper from 'material-ui/Paper';
 class Login extends Component{
   state={
     loading:false,
@@ -107,18 +107,23 @@ class Login extends Component{
       });
     }
 
-    return(<form className="login-form" style={style.container} >
-      <TextField  floatingLabelText="Email" type="email" value={this.state.email} onChange={this.onEmailChange}/>
-      <br/>
-      <TextField floatingLabelText="Passwort" type="password" value={this.state.password} onChange={this.onPasswordChange}/>
-      <br/>
-      <FlatButton label="Login" disabled={this.shouldButtonBeDisabled()} onClick={this.handleSubmit}/>
-      <br/>
-      {errors}
-      <br/>
-      <span className="register-message"> <Link to="/register">Ihr Verein hat noch keinen Account bei uns?</Link> </span>
-      {loadingIndicator}
-    </form>);
+    return(
+      <Paper className="login-form-container">
+        <h2 className="nice-heading">Login</h2>
+        <form className="login-form" style={style.container} onSubmit={this.handleSubmit}>
+
+          <TextField  floatingLabelText="Email" type="email" value={this.state.email} onChange={this.onEmailChange}/>
+          <br/>
+          <TextField floatingLabelText="Passwort" type="password" value={this.state.password} onChange={this.onPasswordChange}/>
+          <br/>
+          <RaisedButton primary={true} label="Login" disabled={this.shouldButtonBeDisabled()} onClick={this.handleSubmit}/>
+          <br/>
+          {errors}
+          <br/>
+          <span className="register-message"> <Link to="/register">Ihr Verein hat noch keinen Account bei uns?</Link> </span>
+          {loadingIndicator}
+        </form>
+      </Paper>);
   }
 }
 export default Login;

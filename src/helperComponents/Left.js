@@ -2,7 +2,7 @@ import React from 'react';
 class Left extends React.Component{
   render(){
     return(
-      <div style={{float:"left"}}>{this.props.children}</div>
+      <div style={{float:"left",margin:"5px"}}>{this.props.children}</div>
     )
   }
 }

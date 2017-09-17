@@ -3,9 +3,10 @@ import AuthStore from './services/AuthStore';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
-import './css/Registrate.css';
+import './css/Register.css';
 import LocationFormHelper from './helperComponents/LocationFormHelper';
-class Registrate extends Component{
+import Paper from 'material-ui/Paper';
+class Register extends Component{
   state={
     loading:false,
     sent:false,
@@ -20,7 +21,7 @@ class Registrate extends Component{
     password:"",
     password_confirmation:"",
   }
-  registrate = ()=>{
+  register = ()=>{
     this.setState({loading:true});
     var details = {
       name:this.state.name,
@@ -32,7 +33,7 @@ class Registrate extends Component{
       password:this.state.password,
       password_confirmation:this.state.password_confirmation
     };
-    AuthStore.registrate(details,(successBody)=>{
+    AuthStore.register(details,(successBody)=>{
       this.setState({loading:false,sent:true});
 
     },(failResponse)=>{
@@ -107,31 +108,34 @@ class Registrate extends Component{
     }
     var necessary= (<span className="necessary">*</span>)
     return(
-      <form className="register-form" style={style.container} >
-        <h4>Account erstellen</h4>
-      {necessary}  <TextField  floatingLabelText="Name" name="name" type="text" value={this.state.name} onChange={this.handleChange} />
-        <br/>
-        <TextField  floatingLabelText="Beschreibung" name="description" type="text" value={this.state.description} onChange={this.handleChange} multiLine={true}/>
-        <br/>
-        <TextField  floatingLabelText="Website" name="website" type="url" value={this.state.website} onChange={this.handleChange}/>
-        <br/>
-        <LocationFormHelper labelText="Sitz" onLocationChange={this.onPositionChange}/>
-        <br/>
-      {necessary}  <TextField  floatingLabelText="Email" name="email" type="email" value={this.state.email} onChange={this.handleChange}/>
+      <Paper className="register-form-container">
+          <h2 className="nice-heading">Account erstellen</h2>
+        <form className="register-form" style={style.container} onSubmit={this.register}>
 
-        {emailErrors}
-      {necessary}  <TextField  floatingLabelText="Passwort" name="password" type="password" value={this.state.password} onChange={this.handleChange}/>
-        <br/>
-        {passwordErrors}
-      {necessary}  <TextField  floatingLabelText="Passwort wiederholen" name="password_confirmation" type="password" value={this.state.password_confirmation} onChange={this.handleChange}/>
-        <br/>
-        {passwordConfirmationErrors}
-        <br/>
-        <FlatButton onClick={this.registrate} disabled={this.buttonShouldBeDisabled()}>Account erstellen</FlatButton>
-        {loadingIndicator}
-        <p className="necessary-explanation">{necessary} muss ausgefüllt sein </p>
-      </form>
+        {necessary}  <TextField  floatingLabelText="Name" name="name" type="text" value={this.state.name} onChange={this.handleChange} />
+          <br/>
+          <TextField  floatingLabelText="Beschreibung" name="description" type="text" value={this.state.description} onChange={this.handleChange} multiLine={true}/>
+          <br/>
+          <TextField  floatingLabelText="Website" name="website" type="url" value={this.state.website} onChange={this.handleChange}/>
+          <br/>
+          <LocationFormHelper labelText="Sitz" onLocationChange={this.onPositionChange}/>
+          <br/>
+        {necessary}  <TextField  floatingLabelText="Email" name="email" type="email" value={this.state.email} onChange={this.handleChange}/>
+
+          {emailErrors}
+        {necessary}  <TextField  floatingLabelText="Passwort" name="password" type="password" value={this.state.password} onChange={this.handleChange}/>
+          <br/>
+          {passwordErrors}
+        {necessary}  <TextField  floatingLabelText="Passwort wiederholen" name="password_confirmation" type="password" value={this.state.password_confirmation} onChange={this.handleChange}/>
+          <br/>
+          {passwordConfirmationErrors}
+          <br/>
+          <FlatButton onClick={this.register} disabled={this.buttonShouldBeDisabled()}>Account erstellen</FlatButton>
+          {loadingIndicator}
+          <p className="necessary-explanation">{necessary} muss ausgefüllt sein </p>
+        </form>
+      </Paper>
     );
   }
 }
-export default Registrate;
+export default Register;

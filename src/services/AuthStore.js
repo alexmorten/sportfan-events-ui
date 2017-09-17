@@ -48,7 +48,7 @@ function query(url,paramsObj,cb,fail){
     .then(parseJSON)
     .then((answer)=>{
       if(!answer.error){
-      
+
         cb(answer);
       }else if (fail) {
         fail(answer);
@@ -184,7 +184,7 @@ function authenticate(email,password,cb,fail){
     });
   });
 }
-function registrate(details,cb,fail){
+function register(details,cb,fail){
   var queryString=constructQueryParams(details);
 
   fetch(AUTH_URL+queryString,{
@@ -287,6 +287,6 @@ const AuthStore = {
   getCurrentUserDetails,
   updateCurrentUserDetails,
   constructQueryParams,
-  registrate
+  register
   };
 export default AuthStore;
